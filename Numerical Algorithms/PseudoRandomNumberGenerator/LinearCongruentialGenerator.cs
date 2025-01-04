@@ -27,4 +27,13 @@ internal static class LinearCongruentialGenerator {
 		s_increment = increment;
 		s_seed = startValue;
 	}
+	public static ulong GenerateNumberInRange(ulong min, ulong max)
+	{
+		if(min > max) {
+			throw new ArgumentException("Min value cannot be greater than max value.");
+		}
+		ulong generatedNumber = GenerateNumber();
+		ulong range = max - min + 1;
+		return min + (generatedNumber % range);
+	}
 }
