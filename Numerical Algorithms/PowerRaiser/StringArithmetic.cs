@@ -27,10 +27,13 @@ internal static class StringArithmetic {
 			b = shortestCounter < 0 ? 0 : GetByteRepresentation(shortest[shortestCounter]);
 			sum = a + b + remainder;
 			remainder = sum > 9 ? 1 : 0;
-			result.Insert(i, sum > 9 ? sum % 10 : sum);
+			result.Append(sum > 9 ? sum % 10 : sum);
 			shortestCounter --;
 		}
-		return result.ToString();
+		if(remainder > 0) {
+			result.Append(remainder);
+		}
+		return new string(result.ToString().Reverse().ToArray());
 	}
 	private static bool IsValidDigit(char digit) {
 		return s_charToByte.ContainsKey(digit);
