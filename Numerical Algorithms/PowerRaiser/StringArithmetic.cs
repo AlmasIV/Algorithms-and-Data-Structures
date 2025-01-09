@@ -47,9 +47,29 @@ internal static class StringArithmetic
 		{
 			return "0";
 		}
-		return "";
+		(string longest, string shortest) = OrderByDescending(number1, number2);
+		StringBuilder result = new StringBuilder();
+		int a, b, product, remainder = 0, shortestCounter = shortest.Length - 1;
+
+		for (int i = longest.Length - 1; i >= 0; i--)
+		{
+			if(!IsValidDigit(longest[i]) || !(shortestCounter < 0) && !IsValidDigit(shortest[shortestCounter])) {
+				throw new ArgumentException(s_inputErrorMessage);
+			}
+			a = GetByteRepresentation(longest[i]);
+			b = shortestCounter < 0 ? 1 : GetByteRepresentation(shortest[shortestCounter]);
+			product = a * b + remainder;
+			remainder = product > 9 ? product / 10 : 0;
+			result.Append(product > 9 ? product % 10 : product);
+			shortestCounter --;
+		}
+		if(remainder > 0) {
+			result.Append(remainder);
+		}
+		return new string(result.ToString().Reverse().ToArray());
 	}
-	private static (string, string) OrderByDescending(string number1, string number2) {
+	private static (string, string) OrderByDescending(string number1, string number2)
+	{
 		return (
 			number1.Length > number2.Length ? number1 : number2,
 			number2.Length < number1.Length ? number2 : number1
