@@ -4,7 +4,7 @@ class Program
 {
     static void Main()
     {
-        string result = StringArithmetic.SumPositiveInts("10", "9");
-        Console.WriteLine(result);
+        string sum = StringArithmetic.SumPositiveInts("10", "9");
+        Console.WriteLine(sum);
     }
 }
