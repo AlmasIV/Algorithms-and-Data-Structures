@@ -7,6 +7,9 @@ internal static class StringArithmetic
 	private static Dictionary<char, byte> s_charToByte = new Dictionary<char, byte>() {
 		{ '0', 0 }, { '1', 1 }, { '2', 2 }, { '3', 3 }, { '4', 4 }, { '5', 5 }, { '6', 6 }, { '7', 7 }, { '8', 8 }, { '9', 9 }
 	};
+	private static Dictionary<byte, char> s_byteToChar = new Dictionary<byte, char>() {
+		{ 0, '0' }, { 1, '1' }, { 2, '2' }, { 3, '3' }, { 4, '4' }, { 5, '5' }, { 6, '6' }, { 7, '7' }, { 8, '8' }, { 9, '9' }
+	};
 	private static readonly string s_inputErrorMessage = "Inputs must contain only digits (special characters, whitespace and letters aren't allowed).";
 	internal static string SumPositiveInts(string number1, string number2)
 	{
@@ -19,8 +22,9 @@ internal static class StringArithmetic
 			return number1;
 		}
 		(string longest, string shortest) = OrderByDescending(number1, number2);
-		StringBuilder result = new StringBuilder(longest.Length + 1);
-		int a, b, sum, remainder = 0, shortestCounter = shortest.Length - 1;
+		List<char> result = new List<char>(longest.Length + 1);
+		byte a, b, sum, remainder = 0;
+		int shortestCounter = shortest.Length - 1;
 
 		for (int i = longest.Length - 1; i >= 0; i--)
 		{
@@ -29,17 +33,17 @@ internal static class StringArithmetic
 				throw new ArgumentException(s_inputErrorMessage);
 			}
 			a = GetByteRepresentation(longest[i]);
-			b = shortestCounter < 0 ? 0 : GetByteRepresentation(shortest[shortestCounter]);
-			sum = a + b + remainder;
-			remainder = sum > 9 ? 1 : 0;
-			result.Append(sum > 9 ? sum % 10 : sum);
+			b = shortestCounter < 0 ? (byte)0 : GetByteRepresentation(shortest[shortestCounter]);
+			sum = (byte)(a + b + remainder);
+			remainder = (byte)(sum > 9 ? 1 : 0);
+			result.Insert(0, GetCharRepresentation(sum > 9 ? (byte)(sum % 10) : sum));
 			shortestCounter--;
 		}
 		if (remainder > 0)
 		{
-			result.Append(remainder);
+			result.Insert(0, GetCharRepresentation(remainder));
 		}
-		return new string(result.ToString().Reverse().ToArray());
+		return new string(result.ToArray());
 	}
 	internal static string MultiplyPositiveInts(string number1, string number2)
 	{
@@ -47,26 +51,56 @@ internal static class StringArithmetic
 		{
 			return "0";
 		}
+		else if(number1 == "1") {
+			return number2;
+		}
+		else if(number2 == "1") {
+			return number1;
+		}
 		(string longest, string shortest) = OrderByDescending(number1, number2);
-		StringBuilder result = new StringBuilder();
-		int a, b, product, remainder = 0, shortestCounter = shortest.Length - 1;
-
-		for (int i = longest.Length - 1; i >= 0; i--)
-		{
-			if(!IsValidDigit(longest[i]) || !(shortestCounter < 0) && !IsValidDigit(shortest[shortestCounter])) {
+		Stack<char> termA = new Stack<char>();
+		Stack<char> termB = new Stack<char>();
+		StringBuilder sumResult;
+		Stack<char> termRef = termA;
+		byte a, b, product, remainder = 0;
+		char[] passedParts, tempArray;
+		int passedPartCounter = 1;
+		
+		for(int i = shortest.Length - 1; i >= 0; i --) {
+			if(!IsValidDigit(shortest[i])) {
 				throw new ArgumentException(s_inputErrorMessage);
 			}
-			a = GetByteRepresentation(longest[i]);
-			b = shortestCounter < 0 ? 1 : GetByteRepresentation(shortest[shortestCounter]);
-			product = a * b + remainder;
-			remainder = product > 9 ? product / 10 : 0;
-			result.Append(product > 9 ? product % 10 : product);
-			shortestCounter --;
+			b = GetByteRepresentation(shortest[i]);
+			termRef = termA.Count == 0 ? termA : termB;
+			for(int j = longest.Length - 1; j >= 0; j --) {
+				if(!IsValidDigit(longest[j])) {
+					throw new ArgumentException(s_inputErrorMessage);
+				}
+				a = GetByteRepresentation(longest[j]);
+				product = (byte)(a * b + remainder);
+				remainder = (byte)(product > 9 ? product / 10 : 0);
+				termRef.Push(GetCharRepresentation(product > 9 ? (byte)(product % 10) : product));
+			}
+			if(remainder > 0) {
+				termRef.Push(GetCharRepresentation(remainder));
+				remainder = 0;
+			}
+			if(termB.Count != 0) {
+				tempArray = termA.ToArray();
+				passedParts = tempArray[^passedPartCounter..];
+				sumResult = new StringBuilder(SumPositiveInts(
+					new string(tempArray[0..^passedPartCounter]),
+					new string(termB.ToArray())
+				));
+				foreach(char ch in passedParts) {
+					sumResult.Append(ch);
+				}
+				termA = new Stack<char>(sumResult.ToString().Reverse());
+				termB.Clear();
+				passedPartCounter ++;
+			}
 		}
-		if(remainder > 0) {
-			result.Append(remainder);
-		}
-		return new string(result.ToString().Reverse().ToArray());
+		return new string(termA.ToArray());
 	}
 	private static (string, string) OrderByDescending(string number1, string number2)
 	{
@@ -82,5 +116,8 @@ internal static class StringArithmetic
 	private static byte GetByteRepresentation(char digit)
 	{
 		return s_charToByte[digit];
+	}
+	private static char GetCharRepresentation(byte digit) {
+		return s_byteToChar[digit];
 	}
 }

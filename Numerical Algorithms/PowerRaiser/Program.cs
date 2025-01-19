@@ -5,9 +5,9 @@ class Program
     static void Main()
     {
         string sum = StringArithmetic.SumPositiveInts("10", "9");
-        Console.WriteLine(sum);
+        Console.WriteLine($"Sum: {sum}");
 
-        string product = StringArithmetic.MultiplyPositiveInts("21", "2");
-        Console.WriteLine(product);
+        string product = StringArithmetic.MultiplyPositiveInts("18446744073709551615", "18446744073709551615");
+        Console.WriteLine($"Product: {product}");
     }
 }

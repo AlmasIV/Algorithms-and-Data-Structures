@@ -28,4 +28,38 @@ public class StringArithmeticTests
 
 		Assert.AreEqual(expected, actual);
 	}
+
+	[TestMethod()]
+	[DataRow("0", "0")]
+	[DataRow("0", "1")]
+	[DataRow("1", "0")]
+	public void MultiplyPositiveInts_MultiplyByZero_ReturnsZero(string num1, string num2) {
+		string expected = "0";
+
+		string actual = StringArithmetic.MultiplyPositiveInts(num1, num2);
+
+		Assert.AreEqual(expected, actual);
+	}
+
+	[TestMethod()]
+	[DataRow("1", "1")]
+	[DataRow("1", "100")]
+	[DataRow("100", "1")]
+	public void MultiplyPositiveInts_NaturalNumberMultipliedToOne_ReturnsNaturalNumber(string num1, string num2) {
+		string expected = num1 == "1" ? num2 : num1;
+
+		string actual = StringArithmetic.MultiplyPositiveInts(num1, num2);
+
+		Assert.AreEqual(expected, actual);
+	}
+
+	[TestMethod()]
+	[DataRow("18446744073709551615", "18446744073709551615")]
+	public void MultiplyPositiveInts_MultiplyMaxULongNumbers_ReturnsTheProduct(string num1, string num2) {
+		string expected = "340282366920938463426481119284349108225";
+
+		string actual = StringArithmetic.MultiplyPositiveInts(num1, num2);
+
+		Assert.AreEqual(expected, actual);
+	}
 }
