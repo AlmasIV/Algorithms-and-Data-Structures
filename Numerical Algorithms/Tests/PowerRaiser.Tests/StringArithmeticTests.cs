@@ -59,7 +59,7 @@ public class StringArithmeticTests
 		string expected = "340282366920938463426481119284349108225";
 
 		string actual = StringArithmetic.MultiplyPositiveInts(num1, num2);
-
+		
 		Assert.AreEqual(expected, actual);
 	}
 }
