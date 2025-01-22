@@ -1,5 +1,3 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
 namespace PowerRaiser.Tests;
 
 [TestClass()]
@@ -50,6 +48,41 @@ public class StringArithmeticTests
 	public void MultiplyPositiveInts_MultiplyMaxULongNumbers_ReturnsTheProduct(string num1, string num2, string expected) {
 		string actual = StringArithmetic.MultiplyPositiveInts(num1, num2);
 		
+		Assert.AreEqual(expected, actual);
+	}
+
+	// It should be undefined though. But for simplicity, let it be this way.
+	[TestMethod()]
+	[DataRow("0", 0, "0")]
+	public void RaisePositiveIntToPower_PowerOfZero_ReturnsZero(string number, int power, string expected) {
+		string actual = StringArithmetic.RaisePositiveIntToPower(number, power);
+
+		Assert.AreEqual(expected, actual);
+	}
+
+	[TestMethod()]
+	[DataRow("1", 0, "1")]
+	[DataRow("1000", 0, "1")]
+	[DataRow("18446744073709551615", 0, "1")]
+	public void RaisePositiveIntToPower_RaiseNumbersToZero_ReturnsOne(string number, int power, string expected) {
+		string actual = StringArithmetic.RaisePositiveIntToPower(number, power);
+
+		Assert.AreEqual(actual, expected);
+	}
+
+	[TestMethod()]
+	[DataRow("1", 2, "1")]
+	[DataRow("2", 2, "4")]
+	[DataRow("3", 2, "9")]
+	[DataRow("4", 2, "16")]
+	[DataRow("5", 2, "25")]
+	[DataRow("6", 2, "36")]
+	[DataRow("7", 2, "49")]
+	[DataRow("8", 2, "64")]
+	[DataRow("9", 2, "81")]
+	public void RaisePositiveIntToPower_SquareDigits_ReturnsTheSquaredResult(string number, int power, string expected) {
+		string actual = StringArithmetic.RaisePositiveIntToPower(number, power);
+
 		Assert.AreEqual(expected, actual);
 	}
 }
