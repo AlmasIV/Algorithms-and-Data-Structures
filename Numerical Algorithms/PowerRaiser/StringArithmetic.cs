@@ -184,25 +184,4 @@ public static class StringArithmetic
 			}
 		}
 	}
-	// private static int CompareTwoPositiveInts(string number1, string number2) {
-	// 	if(number1 == number2) {
-	// 		return 0;
-	// 	}
-	// 	else {
-	// 		if(number1.Length == number2.Length) {
-	// 			byte a, b;
-	// 			for(int i = 0; i < number1.Length; i ++) {
-	// 				a = GetByteRepresentation(number1[i]);
-	// 				b = GetByteRepresentation(number2[i]);
-	// 				if(a > b) {
-	// 					return 1;
-	// 				}
-	// 				else if(a < b) {
-	// 					return -1;
-	// 				}
-	// 			}
-	// 		}
-	// 		return number1.Length > number2.Length ? 1 : -1;
-	// 	}
-	// }
 }
