@@ -41,7 +41,7 @@ public static class LinearCongruentialGenerator
 			throw new ArgumentException("Min value cannot be greater than max value.");
 		}
 		ulong generatedNumber = GenerateNumber();
-		ulong range = max - min + 1;
+		ulong range = max - min;
 		return min + (generatedNumber % range);
 	}
 }
