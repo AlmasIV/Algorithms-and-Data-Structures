@@ -134,7 +134,7 @@ public static class StringArithmetic
 	{
 		return s_byteToChar[digit];
 	}
-	public static string RaisePositiveIntToPower(string number, int power)
+	public static string RaisePositiveIntToPower(string number, ulong power)
 	{
 		if (!IsValidInput(number))
 		{
@@ -156,24 +156,24 @@ public static class StringArithmetic
 		{
 			return "1";
 		}
-		List<KeyValuePair<int, string>> powers = new List<KeyValuePair<int, string>>() { new KeyValuePair<int, string>(1, number) };
-		KeyValuePair<int, string> lastPower = powers.Last();
+		List<KeyValuePair<ulong, string>> powers = new List<KeyValuePair<ulong, string>>() { new KeyValuePair<ulong, string>(1, number) };
+		KeyValuePair<ulong, string> lastPower = powers.Last();
 		while (lastPower.Key + lastPower.Key < power)
 		{
-			lastPower = new KeyValuePair<int, string>(lastPower.Key + lastPower.Key, MultiplyPositiveInts(lastPower.Value, lastPower.Value));
+			lastPower = new KeyValuePair<ulong, string>(lastPower.Key + lastPower.Key, MultiplyPositiveInts(lastPower.Value, lastPower.Value));
 			powers.Add(lastPower);
 		}
 		string result = "1";
-		int currentPower = 0, pointer = powers.Count - 1, pointedPower;
+		ulong currentPower = 0, pointer = (ulong)(powers.Count - 1), pointedPower;
 		while (true)
 		{
-			pointedPower = powers[pointer].Key;
+			pointedPower = powers[(int)pointer].Key;
 			if (currentPower + pointedPower <= power)
 			{
-				result = MultiplyPositiveInts(result, powers[pointer].Value);
+				result = MultiplyPositiveInts(result, powers[(int)pointer].Value);
 				if (currentPower + pointedPower < power)
 				{
-					currentPower += powers[pointer].Key;
+					currentPower += powers[(int)pointer].Key;
 					continue;
 				}
 				return result;
