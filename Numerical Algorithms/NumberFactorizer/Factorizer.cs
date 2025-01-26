@@ -1,7 +1,22 @@
 namespace NumberFactorizer;
 
+/// <summary>
+/// Provides functionality to perform prime factorization on numbers (ulong).
+/// </summary>
 public static class Factorizer
 {
+	/// <summary>
+	/// Returns the list of prime factors of the specified number.
+	/// </summary>
+	/// <param name="number">
+	/// 	The number to factorize into prime factors.
+	/// </param>
+	/// <returns>
+	/// 	A list of prime factors of the given number.
+	/// </returns>
+	/// <remarks>
+	/// For numbers ≤ 1, the method returns an empty list. For prime numbers, the returned list contains only the number itself.
+	/// </remarks>
 	public static List<ulong> Factorize(ulong number)
 	{
 		List<ulong> factors = new List<ulong>();
