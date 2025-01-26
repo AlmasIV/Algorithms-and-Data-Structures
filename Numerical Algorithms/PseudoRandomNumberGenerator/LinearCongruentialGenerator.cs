@@ -5,7 +5,7 @@ public static class LinearCongruentialGenerator
 	private static ulong s_modulus = 2147483648;
 	private static ulong s_multiplier = 22695477;
 	private static ulong s_increment = 1;
-	private static ulong s_seed = 1;
+	private static ulong s_seed = (ulong)(DateTime.Now.Year + DateTime.Now.Month + DateTime.Now.DayOfYear + DateTime.Now.Day + DateTime.Now.Hour + DateTime.Now.Minute + DateTime.Now.Second + DateTime.Now.Millisecond + DateTime.Now.Microsecond);
 	public static ulong GenerateNumber()
 	{
 		s_seed = (s_multiplier * s_seed + s_increment) % s_modulus;
