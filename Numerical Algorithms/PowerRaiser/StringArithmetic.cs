@@ -2,6 +2,9 @@ using System.Text;
 
 namespace PowerRaiser;
 
+/// <summary>
+/// 	Contains some of the rational operations that can be performed on integers represented as strings. Supported operations: summation, multiplication, and exponentiation.
+/// </summary>
 public static class StringArithmetic
 {
 	private static Dictionary<char, byte> s_charToByte = new Dictionary<char, byte>() {
@@ -11,6 +14,22 @@ public static class StringArithmetic
 		{ 0, '0' }, { 1, '1' }, { 2, '2' }, { 3, '3' }, { 4, '4' }, { 5, '5' }, { 6, '6' }, { 7, '7' }, { 8, '8' }, { 9, '9' }
 	};
 	private static readonly string s_inputErrorMessage = "Inputs must contain only digits (special characters, whitespace and letters aren't allowed).";
+
+	/// <summary>
+	/// 	Returns the arithmetic sum of two strings that contain positive integers.
+	/// </summary>
+	/// <param name="number1">
+	/// 	The first addend.
+	/// </param>
+	/// <param name="number2">
+	/// 	The second addend.
+	/// </param>
+	/// <returns>
+	/// 	The sum of <c><paramref name="number1"/></c> and <c><paramref name="number2"/></c>.
+	/// </returns>
+	/// <exception cref="ArgumentException">
+	/// 	Thrown if either of the provided integers represented as strings doesn't include only digits.
+	/// </exception>
 	public static string SumPositiveInts(string number1, string number2)
 	{
 		if (!IsValidInput(number1) || !IsValidInput(number2))
@@ -45,6 +64,20 @@ public static class StringArithmetic
 		}
 		return new string(result.ToArray());
 	}
+
+	/// <summary>
+	/// 	Multiplies two positive integers (zero can be used too) represented as strings.
+	/// </summary>
+	/// <param name="number1">
+	/// 	The multiplicand represented as string.
+	/// </param>
+	/// <param name="number2">
+	/// 	The multiplier represented as string.
+	/// </param>
+	/// <returns></returns>
+	/// <exception cref="ArgumentException">
+	/// 	Thrown if either of the provided integers doesn't include only digits.
+	/// </exception>
 	public static string MultiplyPositiveInts(string number1, string number2)
 	{
 		if (!IsValidInput(number1) || !IsValidInput(number2))
@@ -134,6 +167,22 @@ public static class StringArithmetic
 	{
 		return s_byteToChar[digit];
 	}
+
+	/// <summary>
+	/// 	Computes the exponentiation of the integer represented as string.
+	/// </summary>
+	/// <param name="number">
+	/// 	The base of the exponentiation represented as a string.
+	/// </param>
+	/// <param name="power">
+	/// 	The power of the exponentiation.
+	/// </param>
+	/// <returns>
+	/// 	Returns the equivalent string of exponentiation.
+	/// </returns>
+	/// <exception cref="ArgumentException">
+	/// 	Thrown if <c><paramref name="number"/></c> doesn't include only digits.
+	/// </exception>
 	public static string RaisePositiveIntToPower(string number, ulong power)
 	{
 		if (!IsValidInput(number))
@@ -143,10 +192,6 @@ public static class StringArithmetic
 		if (number == "0")
 		{
 			return "0";
-		}
-		if (power < 0)
-		{
-			throw new ArgumentException("Negative powers aren't supported yet.");
 		}
 		if (power == 1)
 		{
