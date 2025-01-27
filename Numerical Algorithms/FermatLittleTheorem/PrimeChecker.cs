@@ -15,7 +15,7 @@ public static class PrimeChecker {
 	/// 	Max number of tests. The more tests you run the more precise guess you get.
 	/// </param>
 	/// <returns>
-	/// 	Returns <c>true</c> if <paramref name="number" /> is probably a prime number, otherwise <c>false</c>.
+	/// 	<c>true</c> if <paramref name="number" /> is probably a prime number, otherwise <c>false</c>.
 	/// </returns>
 	public static bool IsProbablyPrime(ulong number, ulong maxAttemptsForTest) {
 		if(number < 2) {
