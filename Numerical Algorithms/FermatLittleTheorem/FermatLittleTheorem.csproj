@@ -1,8 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\PowerRaiser\PowerRaiser.csproj" />
     <ProjectReference Include="..\PseudoRandomNumberGenerator\PseudoRandomNumberGenerator.csproj" />
+    <ProjectReference Include="..\PowerRaiser\PowerRaiser.csproj" />
+    <ProjectReference Include="..\SieveOfEratosthenes\SieveOfEratosthenes.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

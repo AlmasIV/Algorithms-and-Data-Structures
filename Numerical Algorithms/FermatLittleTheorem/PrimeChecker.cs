@@ -1,5 +1,6 @@
-using PowerRaiser;
+using System.Numerics;
 using PseudoRandomNumberGenerator;
+using PowerRaiser;
 
 /// <summary>
 /// 	Defines a method that tries to determine if the passed number is prime or not. The method uses Fermat's little theorem. The algorithm is probabilistic.
@@ -21,13 +22,16 @@ public static class PrimeChecker {
 		if(number < 2) {
 			return false;
 		}
-
+		ulong randomNumber;
+		BigInteger poweredRandomNum;
 		for(ulong i = 0; i < maxAttemptsForTest; i ++) {
-			if(ulong.Parse(StringArithmetic.RaisePositiveIntToPower(LinearCongruentialGenerator.GenerateNumberInRange(1, number).ToString(), number - 1)) % number != 1) {
+			randomNumber = LinearCongruentialGenerator.GenerateNumberInRange(1, number);
+			poweredRandomNum = BigInteger.Parse(StringArithmetic.RaisePositiveIntToPower(randomNumber.ToString(), number - 1));
+
+			if(poweredRandomNum % number != 1) {
 				return false;
 			}
 		}
-
 		// 1/2 in power of maxAttemptsForTest => This is the probability that the number is not a prime. Which means the function is probabilistic.
 		return true;
 	}
