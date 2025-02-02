@@ -1,4 +1,4 @@
-namespace SinglyLinkedLists;
+namespace SinglyLinkedList;
 
 /// <summary>
 /// 	Represents a singly-linked list of type <c><typeparamref name="T"/></c>.

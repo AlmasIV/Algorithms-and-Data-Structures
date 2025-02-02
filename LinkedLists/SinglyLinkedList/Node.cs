@@ -1,4 +1,4 @@
-namespace SinglyLinkedLists;
+namespace SinglyLinkedList;
 
 /// <summary>
 /// 	Represents a node of a singly-linked list.

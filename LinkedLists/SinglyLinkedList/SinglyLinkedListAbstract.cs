@@ -1,6 +1,6 @@
 using System.Collections;
 
-namespace SinglyLinkedLists;
+namespace SinglyLinkedList;
 
 /// <summary>
 /// 	Defines an abstract base class for a singly-linked list structures.
