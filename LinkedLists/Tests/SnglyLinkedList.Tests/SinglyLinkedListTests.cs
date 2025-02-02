@@ -3,23 +3,14 @@ namespace SinglyLinkedList.Tests;
 [TestClass()]
 public class SinglyLinkedListTests {
 	[TestMethod()]
-	[DataRow(1)]
-	public void PrependNode_PrependingNode_PushesFirstNode(int initialHeadValue) {
-		SinglyLinkedList<int> intsLinkedList = new SinglyLinkedList<int>(new Node<int>(initialHeadValue));
-
-		intsLinkedList.PrependNode(new Node<int>(99));
-		int previousHead = intsLinkedList.ToArray()[1];
-
-		Assert.AreEqual(previousHead, initialHeadValue);
-	}
-
-	[TestMethod()]
 	[DataRow(0)]
-	public void PrependNode_PrependingNode_PrependedNodeBecomesNewHead(int nodeToBePrepended) {
-		SinglyLinkedList<int> ints = new(new Node<int>(nodeToBePrepended));
+	public void PrependNode_PrependingOnEmptySinglyLinkedList_PrependsAsExpected(int nodeValue) {
+		SinglyLinkedList<int> ints = new SinglyLinkedList<int>();
+		Node<int> node = new Node<int>(nodeValue);
 
-		int headValue = ints.First();
+		ints.PrependNode(node);
+		int headValue = ints.ToArray()[0];
 
-		Assert.AreEqual(headValue, nodeToBePrepended);
+		Assert.AreEqual(headValue, nodeValue);
 	}
 }
