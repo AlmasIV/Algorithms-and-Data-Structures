@@ -23,6 +23,14 @@ public abstract class SinglyLinkedListAbstract<T> : IEnumerable<T>
 	/// </param>
 	public abstract void PrependNode(Node<T> node);
 
+	/// <summary>
+	/// 	Adds the specified <c><paramref name="node"/></c> to the end of the list.
+	/// </summary>
+	/// <param name="node">
+	/// 	The node to be appended to the list.
+	/// </param>
+	public abstract void AppendNode(Node<T> node);
+
     public IEnumerator<T> GetEnumerator()
     {
         Node<T>? temp = _head;

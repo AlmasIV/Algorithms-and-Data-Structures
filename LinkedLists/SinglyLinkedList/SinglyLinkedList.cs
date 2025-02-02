@@ -8,6 +8,11 @@ namespace SinglyLinkedList;
 /// </typeparam>
 public class SinglyLinkedList<T> : SinglyLinkedListAbstract<T> {
 	/// <summary>
+	/// 	Creates an empty singly-linked list.
+	/// </summary>
+	public SinglyLinkedList(){}
+
+	/// <summary>
 	/// 	Creates a singly-linked list with the specified <c><paramref name="head"/></c>.
 	/// </summary>
 	/// <param name="head">
@@ -28,7 +33,33 @@ public class SinglyLinkedList<T> : SinglyLinkedListAbstract<T> {
     public override void PrependNode(Node<T> node)
     {
         ArgumentNullException.ThrowIfNull(node);
-		node.Next = base._head;
-		base._head = node;
+
+		if(base._head is null) {
+			base._head = node;
+		}
+		else {
+			node.Next = base._head;
+			base._head = node;
+		}
+    }
+
+	/// <inheritdoc />
+	/// <exception cref="ArgumentNullException">
+	/// 	Thrown when the <c><paramref name="node"/></c> is <c>null</c>.
+	/// </exception>
+	public override void AppendNode(Node<T> node)
+    {
+        ArgumentNullException.ThrowIfNull(node);
+
+		if(base._head is null) {
+			base._head = node;
+		}
+		else {
+			Node<T> tempNode = base._head;
+			while(tempNode.Next is not null) {
+				tempNode = tempNode.Next;
+			}
+			tempNode.Next = node;
+		}
     }
 }
