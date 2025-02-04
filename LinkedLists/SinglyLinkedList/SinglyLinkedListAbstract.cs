@@ -11,9 +11,14 @@ namespace SinglyLinkedList;
 public abstract class SinglyLinkedListAbstract<T> : IEnumerable<T>
 {
 	/// <summary>
-	/// 	The head node of the singly-linked list.
+	/// 	The head node of the linked list.
 	/// </summary>
-	protected Node<T>? _head { get; set; }
+	protected Node<T>? Head { get; set; }
+
+	/// <summary>
+	/// 	The length of the linked list.
+	/// </summary>
+	protected ulong Length { get; set; }
 
 	/// <summary>
 	/// 	Adds the specified <c><paramref name="node"/></c> to the beginning of the list.
@@ -31,17 +36,18 @@ public abstract class SinglyLinkedListAbstract<T> : IEnumerable<T>
 	/// </param>
 	public abstract void AppendNode(Node<T> node);
 
-    public IEnumerator<T> GetEnumerator()
-    {
-        Node<T>? temp = _head;
-		while(temp is not null) {
-			yield return temp.Value!;
-			temp = temp.Next;
-		}
-    }
+	/// <summary>
+	/// 	Removes the specified <c><paramref name="node"/></c> from the linked list.
+	/// </summary>
+	/// <param name="node">
+	/// 	The node to be removed.
+	/// </param>
+	public abstract void RemoveNodeByReference(Node<T> node);
 
-    IEnumerator IEnumerable.GetEnumerator()
-    {
-        return GetEnumerator();
-    }
+	public abstract IEnumerator<T> GetEnumerator();
+
+	IEnumerator IEnumerable.GetEnumerator()
+	{
+		return GetEnumerator();
+	}
 }
