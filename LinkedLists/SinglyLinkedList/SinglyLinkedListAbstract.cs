@@ -18,7 +18,7 @@ public abstract class SinglyLinkedListAbstract<T> : IEnumerable<T>
 	/// <summary>
 	/// 	The length of the linked list.
 	/// </summary>
-	protected ulong Length { get; set; }
+	public ulong Length { get; set; }
 
 	/// <summary>
 	/// 	Adds the specified <c><paramref name="node"/></c> to the beginning of the list.

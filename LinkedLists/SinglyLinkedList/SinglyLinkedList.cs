@@ -27,6 +27,7 @@ public class SinglyLinkedList<T> : SinglyLinkedListAbstract<T>
 	{
 		ArgumentNullException.ThrowIfNull(head);
 		base.Head = head;
+		base.Length ++;
 	}
 
 	/// <inheritdoc />
@@ -46,6 +47,7 @@ public class SinglyLinkedList<T> : SinglyLinkedListAbstract<T>
 			node.Next = base.Head;
 			base.Head = node;
 		}
+		base.Length ++;
 	}
 
 	/// <inheritdoc />
@@ -69,6 +71,7 @@ public class SinglyLinkedList<T> : SinglyLinkedListAbstract<T>
 			}
 			tempNode.Next = node;
 		}
+		base.Length ++;
 	}
 
 	///	<inheritdoc />
@@ -100,6 +103,7 @@ public class SinglyLinkedList<T> : SinglyLinkedListAbstract<T>
 				temp = temp.Next;
 			}
 		}
+		base.Length --;
 	}
 
 	public override IEnumerator<T> GetEnumerator()
