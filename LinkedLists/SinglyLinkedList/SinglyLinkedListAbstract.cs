@@ -3,12 +3,12 @@ using System.Collections;
 namespace SinglyLinkedList;
 
 /// <summary>
-/// 	Defines an abstract base class for a singly-linked list structures.
+/// 	Defines an abstract base class for a linked list structures.
 /// </summary>
 /// <typeparam name="T">
-/// 	The type of elements stored in the singly-linked list nodes.
+/// 	The type of elements stored in the linked list nodes.
 /// </typeparam>
-public abstract class SinglyLinkedListAbstract<T> : IEnumerable<T>
+public abstract class LinkedListAbstract<T> : IEnumerable<T>
 {
 	/// <summary>
 	/// 	The head node of the linked list.
