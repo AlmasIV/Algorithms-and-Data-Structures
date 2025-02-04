@@ -20,7 +20,20 @@ public class SinglyLinkedListTests {
 		_linkedList.PrependNode(node);
 		int headValue = _linkedList.First();
 
-		Assert.AreEqual(headValue, nodeValue);
+		Assert.AreEqual(nodeValue, headValue);
+	}
+
+	[TestMethod()]
+	[DataRow(0)]
+	public void PrependNode_PrependingOnNonEmptyLinkedList_PrependedNodeBecomesHead(int nodeValue)
+	{
+		InitializeSample();
+		Node<int> node = new Node<int>(nodeValue);
+
+		_linkedList.PrependNode(node);
+		int headValue = _linkedList.First();
+
+		Assert.AreEqual(nodeValue, headValue);
 	}
 
 	[TestMethod()]
@@ -28,23 +41,12 @@ public class SinglyLinkedListTests {
 	public void PrependNode_PrependingOnEmptySinglyLinkedList_IncrementsLength(int nodeValue) {
 		_linkedList = new SinglyLinkedList<int>();
 		Node<int> node = new Node<int>(nodeValue);
+		ulong expectedLength = 1ul;
 
 		_linkedList.PrependNode(node);
-		ulong length = _linkedList.Length;
+		ulong actualLength = _linkedList.Length;
 
-		Assert.AreEqual(length, 1UL);
-	}
-
-	[TestMethod()]
-	[DataRow(0)]
-	public void PrependNode_PrependingOnNonEmptyLinkedList_PrependedNodeBecomesHead(int nodeValue) {
-		InitializeSample();
-		Node<int> node = new Node<int>(nodeValue);
-
-		_linkedList.PrependNode(node);
-		int headValue = _linkedList.First();
-
-		Assert.AreEqual(headValue, nodeValue);
+		Assert.AreEqual(expectedLength, actualLength);
 	}
 
 	[TestMethod()]
@@ -52,12 +54,12 @@ public class SinglyLinkedListTests {
 	public void PrependNode_PrependingOnNonEmptyLinkedList_IncrementsLength(int nodeValue) {
 		InitializeSample();
 		Node<int> node = new Node<int>(nodeValue);
-		ulong initializedLength = _linkedList.Length;
+		ulong expectedLength = _linkedList.Length + 1;
 
 		_linkedList.PrependNode(node);
-		ulong length = _linkedList.Length;
+		ulong actualLength = _linkedList.Length;
 
-		Assert.AreEqual(length, initializedLength + 1);
+		Assert.AreEqual(expectedLength, actualLength);
 	}
 
 	[TestMethod()]
@@ -69,7 +71,7 @@ public class SinglyLinkedListTests {
 		_linkedList.AppendNode(node);
 		int headValue = _linkedList.Last();
 
-		Assert.AreEqual(headValue, nodeValue);
+		Assert.AreEqual(nodeValue, headValue);
 	}
 
 	[TestMethod()]
@@ -81,6 +83,19 @@ public class SinglyLinkedListTests {
 		_linkedList.AppendNode(node);
 		int lastNodeValue = _linkedList.Last();
 
-		Assert.AreEqual(lastNodeValue, nodeValue);
+		Assert.AreEqual(nodeValue, lastNodeValue);
+	}
+
+	[TestMethod()]
+	[DataRow(0)]
+	public void AppendNode_AppendingOnEmtpyLinkedList_IncrementsLength(int nodeValue) {
+		_linkedList = new SinglyLinkedList<int>();
+		Node<int> node = new Node<int>(nodeValue);
+		ulong expectedLength = 1ul;
+
+		_linkedList.AppendNode(node);
+		ulong actualLength = _linkedList.Length;
+
+		Assert.AreEqual(expectedLength, actualLength);
 	}
 }
