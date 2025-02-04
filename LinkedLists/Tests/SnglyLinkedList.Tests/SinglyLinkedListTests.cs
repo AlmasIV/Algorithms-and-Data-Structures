@@ -16,12 +16,12 @@ public class SinglyLinkedListTests {
 
 	[TestMethod()]
 	[DataRow(0)]
-	public void PrependNode_PrependingOnEmptySinglyLinkedList_PrependsAsExpected(int nodeValue) {
+	public void PrependNode_PrependingOnEmptySinglyLinkedList_PrependedNodeBecomesHead(int nodeValue) {
 		_linkedList = new SinglyLinkedList<int>();
 		Node<int> node = new Node<int>(nodeValue);
 
 		_linkedList.PrependNode(node);
-		int headValue = _linkedList.ToArray()[0];
+		int headValue = _linkedList.First();
 
 		Assert.AreEqual(headValue, nodeValue);
 	}
@@ -33,31 +33,31 @@ public class SinglyLinkedListTests {
 		Node<int> node = new Node<int>(nodeValue);
 
 		_linkedList.PrependNode(node);
-		int headValue = _linkedList.ToArray()[0];
+		int headValue = _linkedList.First();
 
 		Assert.AreEqual(headValue, nodeValue);
 	}
 
 	[TestMethod()]
 	[DataRow(1)]
-	public void AppendNode_AppendingOnEmtpyLinkedList_AppendsAsExpected(int nodeValue) {
+	public void AppendNode_AppendingOnEmtpyLinkedList_AppendedNodeIsTheLastOne(int nodeValue) {
 		_linkedList = new SinglyLinkedList<int>();
 		Node<int> node = new Node<int>(nodeValue);
 
 		_linkedList.AppendNode(node);
-		int headValue = _linkedList.ToArray()[0];
+		int headValue = _linkedList.Last();
 
 		Assert.AreEqual(headValue, nodeValue);
 	}
 
 	[TestMethod()]
 	[DataRow(100)]
-	public void AppendNode_AppendingNodeOnNonEmptyLinkedList_AppendedNodeBecomesLastNode(int nodeValue) {
+	public void AppendNode_AppendingNodeOnNonEmptyLinkedList_AppendedNodeIsTheLastOne(int nodeValue) {
 		InitializeSample();
 		Node<int> node = new Node<int>(nodeValue);
 
 		_linkedList.AppendNode(node);
-		int lastNodeValue = _linkedList.ToArray().Last();
+		int lastNodeValue = _linkedList.Last();
 
 		Assert.AreEqual(lastNodeValue, nodeValue);
 	}
