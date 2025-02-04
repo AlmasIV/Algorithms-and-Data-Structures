@@ -9,27 +9,6 @@ namespace SinglyLinkedList;
 /// </typeparam>
 public class SinglyLinkedList<T> : SinglyLinkedListAbstract<T>
 {
-	/// <summary>
-	/// 	Creates an empty singly-linked list.
-	/// </summary>
-	public SinglyLinkedList() { }
-
-	/// <summary>
-	/// 	Creates a singly-linked list with the specified <c><paramref name="head"/></c>.
-	/// </summary>
-	/// <param name="head">
-	/// 	The head of the singly-linked list.
-	/// </param>
-	/// <exception cref="ArgumentNullException">
-	/// 	Thrown if <c><paramref name="head"/></c> is <c>null</c>.
-	/// </exception>
-	public SinglyLinkedList(Node<T> head)
-	{
-		ArgumentNullException.ThrowIfNull(head);
-		base.Head = head;
-		base.Length ++;
-	}
-
 	/// <inheritdoc />
 	/// <exception cref="ArgumentNullException">
 	/// 	Thrown when the <c><paramref name="node"/></c> is <c>null</c>.
