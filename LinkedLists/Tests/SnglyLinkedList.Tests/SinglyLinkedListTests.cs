@@ -98,4 +98,17 @@ public class SinglyLinkedListTests {
 
 		Assert.AreEqual(expectedLength, actualLength);
 	}
+
+	[TestMethod()]
+	[DataRow(0)]
+	public void AppendNode_AppendingOnNonEmptyLinkedList_IncrementsLength(int nodeValue) {
+		InitializeSample();
+		ulong expectedLength = _linkedList.Length + 1;
+		Node<int> node = new Node<int>(nodeValue);
+
+		_linkedList.AppendNode(node);
+		ulong actualLength = _linkedList.Length;
+
+		Assert.AreEqual(expectedLength, actualLength);
+	}
 }
