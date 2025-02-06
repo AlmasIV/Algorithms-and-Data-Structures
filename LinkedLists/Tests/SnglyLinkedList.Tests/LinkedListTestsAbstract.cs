@@ -102,4 +102,16 @@ public abstract class LinkedListTestsAbstract<T> {
 
 		Assert.AreEqual(expectedLength, actualLength);
 	}
+	
+	[TestMethod()]
+	public void RemoveNodeByReference_RemovingNodeOnEmptyLinkedList_DoesNothing() {
+		LinkedListAbstract<T> linkedList = InitializeEmptyLinkedList();
+		Node<T> node = GetNode();
+		ulong expectedLength = linkedList.Length;
+
+		linkedList.RemoveNodeByReference(node);
+		ulong actualLength = linkedList.Length;
+
+		Assert.AreEqual(expectedLength, actualLength);
+	}
 }

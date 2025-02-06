@@ -44,6 +44,14 @@ public abstract class LinkedListAbstract<T> : IEnumerable<T>
 	/// </param>
 	public abstract void RemoveNodeByReference(Node<T> node);
 
+	/// <summary>
+	/// 	Removes a first node with the specified <c><paramref name="value"/></c> from the linked list.
+	/// </summary>
+	/// <param name="value">
+	/// 	The value of the node to be removed.
+	/// </param>
+	public abstract void RemoveNodeByValue(T value);
+
 	public abstract IEnumerator<T> GetEnumerator();
 
 	IEnumerator IEnumerable.GetEnumerator()

@@ -17,16 +17,16 @@ public class SinglyLinkedList<T> : LinkedListAbstract<T>
 	{
 		ArgumentNullException.ThrowIfNull(node);
 
-		if (base.Head is null)
+		if (Head is null)
 		{
-			base.Head = node;
+			Head = node;
 		}
 		else
 		{
-			node.Next = base.Head;
-			base.Head = node;
+			node.Next = Head;
+			Head = node;
 		}
-		base.Length ++;
+		Length++;
 	}
 
 	/// <inheritdoc />
@@ -37,20 +37,20 @@ public class SinglyLinkedList<T> : LinkedListAbstract<T>
 	{
 		ArgumentNullException.ThrowIfNull(node);
 
-		if (base.Head is null)
+		if (Head is null)
 		{
-			base.Head = node;
+			Head = node;
 		}
 		else
 		{
-			Node<T> tempNode = base.Head;
+			Node<T> tempNode = Head;
 			while (tempNode.Next is not null)
 			{
 				tempNode = tempNode.Next;
 			}
 			tempNode.Next = node;
 		}
-		base.Length ++;
+		Length++;
 	}
 
 	///	<inheritdoc />
@@ -65,24 +65,30 @@ public class SinglyLinkedList<T> : LinkedListAbstract<T>
 		{
 			return;
 		}
-		else if (node == base.Head)
+		else if (node == Head)
 		{
 			Head = Head.Next;
+			Length--;
 		}
 		else
 		{
-			Node<T>? temp = base.Head;
+			Node<T>? temp = Head;
 			while (temp is not null)
 			{
 				if (temp.Next == node)
 				{
 					temp.Next = temp.Next.Next;
+					Length--;
 					break;
 				}
 				temp = temp.Next;
 			}
 		}
-		base.Length --;
+	}
+
+	public override void RemoveNodeByValue(T value)
+	{
+		throw new NotImplementedException();
 	}
 
 	public override IEnumerator<T> GetEnumerator()
