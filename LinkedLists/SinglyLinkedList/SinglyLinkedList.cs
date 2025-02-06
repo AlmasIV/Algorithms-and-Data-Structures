@@ -91,7 +91,24 @@ public class SinglyLinkedList<T> : LinkedListAbstract<T>
 		throw new NotImplementedException();
 	}
 
-	public override IEnumerator<T> GetEnumerator()
+	/// <inheritdoc />
+	/// <exception cref="ArgumentNullException">
+	/// 	Thrown when the <c><paramref name="node"/></c> is <c>null</c>.
+	/// </exception>
+    public override bool ContainsNode(Node<T> node)
+    {
+		ArgumentNullException.ThrowIfNull(node);
+		Node<T>? temp = Head;
+		while(temp is not null) {
+			if(temp == node) {
+				return true;
+			}
+			temp = temp.Next;
+		}
+		return false;
+    }
+
+    public override IEnumerator<T> GetEnumerator()
 	{
 		Node<T>? temp = Head;
 		while (temp is not null)

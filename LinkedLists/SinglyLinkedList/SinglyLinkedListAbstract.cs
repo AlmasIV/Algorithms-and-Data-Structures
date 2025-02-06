@@ -52,6 +52,17 @@ public abstract class LinkedListAbstract<T> : IEnumerable<T>
 	/// </param>
 	public abstract void RemoveNodeByValue(T value);
 
+	/// <summary>
+	/// 	Checks whether the linked list contains the specified <c><paramref name="node"/></c>.
+	/// </summary>
+	/// <param name="node">
+	/// 	The node to be checked.
+	/// </param>
+	/// <returns>
+	/// 	<c>true</c> if the passed <c><paramref name="node"/></c> is part of the linked list. Otherwise <c>false</c>.
+	/// </returns>
+	public abstract bool ContainsNode(Node<T> node);
+
 	public abstract IEnumerator<T> GetEnumerator();
 
 	IEnumerator IEnumerable.GetEnumerator()
