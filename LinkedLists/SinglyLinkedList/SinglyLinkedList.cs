@@ -131,12 +131,12 @@ public class SinglyLinkedList<T> : LinkedListAbstract<T>
 		return false;
     }
 
-    public override IEnumerator<T> GetEnumerator()
+    public override IEnumerator<Node<T>> GetEnumerator()
 	{
 		Node<T>? temp = Head;
 		while (temp is not null)
 		{
-			yield return temp.Value!;
+			yield return temp;
 			temp = temp.Next;
 		}
 	}

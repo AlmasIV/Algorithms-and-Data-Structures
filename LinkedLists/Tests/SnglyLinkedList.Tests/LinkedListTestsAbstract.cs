@@ -15,7 +15,7 @@ public abstract class LinkedListTestsAbstract<T>
 		T? nodeValue = node.Value;
 
 		linkedList.PrependNode(node);
-		T headValue = linkedList.First();
+		T? headValue = linkedList.First().Value;
 
 		Assert.AreEqual(nodeValue, headValue);
 	}
@@ -28,7 +28,7 @@ public abstract class LinkedListTestsAbstract<T>
 		T? nodeValue = node.Value;
 
 		linkedList.PrependNode(node);
-		T headValue = linkedList.First();
+		T? headValue = linkedList.First().Value;
 
 		Assert.AreEqual(nodeValue, headValue);
 	}
@@ -67,7 +67,7 @@ public abstract class LinkedListTestsAbstract<T>
 		T? nodeValue = node.Value;
 
 		linkedList.AppendNode(node);
-		T headValue = linkedList.Last();
+		T? headValue = linkedList.Last().Value;
 
 		Assert.AreEqual(nodeValue, headValue);
 	}
@@ -80,7 +80,7 @@ public abstract class LinkedListTestsAbstract<T>
 		T? nodeValue = node.Value;
 
 		linkedList.AppendNode(node);
-		T lastNodeValue = linkedList.Last();
+		T? lastNodeValue = linkedList.Last().Value;
 
 		Assert.AreEqual(nodeValue, lastNodeValue);
 	}

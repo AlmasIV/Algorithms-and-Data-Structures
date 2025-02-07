@@ -8,7 +8,7 @@ class Program {
 			_linkedList.AppendNode(new Node<int>(i));
 		}
 		foreach(var v in _linkedList) {
-			Console.WriteLine(v);
+			Console.WriteLine(v.Value);
 		}
 	}
 }

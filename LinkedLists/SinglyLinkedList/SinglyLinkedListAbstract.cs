@@ -8,7 +8,7 @@ namespace SinglyLinkedList;
 /// <typeparam name="T">
 /// 	The type of elements stored in the linked list nodes.
 /// </typeparam>
-public abstract class LinkedListAbstract<T> : IEnumerable<T>
+public abstract class LinkedListAbstract<T> : IEnumerable<Node<T>>
 {
 	/// <summary>
 	/// 	The head node of the linked list.
@@ -63,7 +63,7 @@ public abstract class LinkedListAbstract<T> : IEnumerable<T>
 	/// </returns>
 	public abstract bool ContainsNode(Node<T> node);
 
-	public abstract IEnumerator<T> GetEnumerator();
+	public abstract IEnumerator<Node<T>> GetEnumerator();
 
 	IEnumerator IEnumerable.GetEnumerator()
 	{
