@@ -131,6 +131,25 @@ public class SinglyLinkedList<T> : LinkedListAbstract<T>
 		return false;
     }
 
+	/// <inheritdoc />
+	/// <exception cref="ArgumentNullException">
+	/// 	Thrown when the <c><paramref name="nodeToBeInserted"/></c> is <c>null</c>.
+	/// </exception>
+	/// <exception cref="ArgumentException">
+	/// 	Thrown when the <c><paramref name="node"/></c> doesn't belong to the linked list.
+	///	</exception>
+    public override void InsertAfter(Node<T> node, Node<T> nodeToBeInserted)
+    {
+		ArgumentNullException.ThrowIfNull(nodeToBeInserted);
+
+		if(!ContainsNode(node)) {
+			throw new ArgumentException($"The '{nameof(node)}' doesn't exist in the linked list.", nameof(node));
+		}
+
+		nodeToBeInserted.Next = node.Next;
+		node.Next = nodeToBeInserted;
+    }
+
     public override IEnumerator<Node<T>> GetEnumerator()
 	{
 		Node<T>? temp = Head;

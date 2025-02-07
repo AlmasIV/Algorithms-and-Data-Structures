@@ -63,6 +63,17 @@ public abstract class LinkedListAbstract<T> : IEnumerable<Node<T>>
 	/// </returns>
 	public abstract bool ContainsNode(Node<T> node);
 
+	/// <summary>
+	/// 	Inserts <c><paramref name="nodeToBeInserted"/></c> after <c><paramref name="node"/></c>.
+	/// </summary>
+	/// <param name="node">
+	/// 	The node that must come before the <c><paramref name="nodeToBeInserted"/></c>.
+	/// </param>
+	/// <param name="nodeToBeInserted">
+	/// 	The node that to be inserted.
+	/// </param>
+	public abstract void InsertAfter(Node<T> node, Node<T> nodeToBeInserted);
+
 	public abstract IEnumerator<Node<T>> GetEnumerator();
 
 	IEnumerator IEnumerable.GetEnumerator()
