@@ -2,23 +2,23 @@
 namespace SinglyLinkedList.Tests;
 
 [TestClass()]
-public class SinglyLinkedListOfIntsTests : LinkedListTestsAbstract<int>
+public class SinglyLinkedListOfGuidsTests : LinkedListTestsAbstract<Guid>
 {
-    protected override Node<int> GetNode()
+    protected override Node<Guid> GetNode()
     {
-        return new Node<int>(1);
+        return new Node<Guid>(Guid.NewGuid());
     }
 
-    protected override LinkedListAbstract<int> InitializeEmptyLinkedList()
+    protected override LinkedListAbstract<Guid> InitializeEmptyLinkedList()
     {
-        return new SinglyLinkedList<int>();
+        return new SinglyLinkedList<Guid>();
     }
 
-    protected override LinkedListAbstract<int> InitializeNonEmptyLinkedList()
+    protected override LinkedListAbstract<Guid> InitializeNonEmptyLinkedList()
     {
-        SinglyLinkedList<int> linkedList = new SinglyLinkedList<int>();
+        SinglyLinkedList<Guid> linkedList = new SinglyLinkedList<Guid>();
         for(int i = 0; i < 100; i ++) {
-            linkedList.AppendNode(new Node<int>(i));
+            linkedList.AppendNode(new Node<Guid>(Guid.NewGuid()));
         }
         return linkedList;
     }

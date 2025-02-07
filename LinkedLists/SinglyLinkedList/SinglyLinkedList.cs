@@ -86,9 +86,32 @@ public class SinglyLinkedList<T> : LinkedListAbstract<T>
 		}
 	}
 
+	/// <inheritdoc />
+	/// <exception cref="ArgumentNullException">
+	/// 	Thrown when the <c><paramref name="value"/></c> is <c>null</c>.
+	///	</exception>
 	public override void RemoveNodeByValue(T value)
 	{
-		throw new NotImplementedException();
+		ArgumentNullException.ThrowIfNull(value);
+
+		if(Head is null) {
+			return;
+		}
+		else if(Object.Equals(Head.Value, value)) {
+			Head = Head.Next;
+			Length --;
+		}
+		else {
+			Node<T>? temp = Head;
+			while(temp is not null) {
+				if(Object.Equals(temp.Next!.Value, value)) {
+					temp.Next = temp.Next.Next;
+					Length --;
+					break;
+				}
+				temp = temp.Next;
+			}
+		}
 	}
 
 	/// <inheritdoc />

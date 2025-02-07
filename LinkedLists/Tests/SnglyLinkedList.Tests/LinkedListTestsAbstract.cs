@@ -153,6 +153,46 @@ public abstract class LinkedListTestsAbstract<T>
 	}
 
 	[TestMethod()]
+	public void RemoveNodeByValue_RemovingNodeOnEmptyLinkedList_DoesNothing() {
+		LinkedListAbstract<T> linkedList = InitializeEmptyLinkedList();
+		Node<T> node = GetNode();
+		ulong expected = linkedList.Length;
+
+		linkedList.RemoveNodeByValue(node.Value!);
+		ulong actual = linkedList.Length;
+
+		Assert.AreEqual(expected, actual);
+	}
+
+	[TestMethod()]
+	public void RemoveNodeByValue_RemovingNodeOnNonEmptyLinkedList_RemovesNode()
+	{
+		LinkedListAbstract<T> linkedList = InitializeNonEmptyLinkedList();
+		Node<T> node = GetNode();
+		linkedList.AppendNode(node);
+		bool expected = false;
+
+		linkedList.RemoveNodeByValue(node.Value!);
+		bool actual = linkedList.ContainsNode(node);
+
+		Assert.AreEqual(expected, actual);
+	}
+
+	[TestMethod()]
+	public void RemoveNodeByValue_RemovingNodeOnNonEmptyLinkedList_DecrementsLength()
+	{
+		LinkedListAbstract<T> linkedList = InitializeNonEmptyLinkedList();
+		Node<T> node = GetNode();
+		ulong expected = linkedList.Length;
+		linkedList.AppendNode(node);
+
+		linkedList.RemoveNodeByValue(node.Value!);
+		ulong actual = linkedList.Length;
+
+		Assert.AreEqual(expected, actual);
+	}
+
+	[TestMethod()]
 	public void ContainsNode_CheckingEmptyLinkedList_ReturnsFalse()
 	{
 		LinkedListAbstract<T> linkedList = InitializeEmptyLinkedList();
