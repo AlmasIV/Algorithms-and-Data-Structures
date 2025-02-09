@@ -2,7 +2,7 @@
 namespace SinglyLinkedList.Tests;
 
 [TestClass()]
-public class SinglyLinkedListOfGuidsTests : LinkedListTestsAbstract<Guid>
+public class SinglyLinkedListOfGuidsTests : SinglyLinkedListTestsAbstract<Guid>
 {
     protected override Node<Guid> GetNode()
     {
