@@ -8,7 +8,7 @@ namespace SinglyLinkedList;
 /// <typeparam name="T">
 /// 	The type of elements stored in the linked list nodes.
 /// </typeparam>
-public abstract class LinkedListAbstract<T> : IEnumerable<Node<T>>
+public abstract class SinglyLinkedListAbstract<T> : IEnumerable<Node<T>>
 {
 	/// <summary>
 	/// 	The head node of the linked list.

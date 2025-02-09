@@ -9,12 +9,12 @@ public class SinglyLinkedListOfGuidsTests : LinkedListTestsAbstract<Guid>
         return new Node<Guid>(Guid.NewGuid());
     }
 
-    protected override LinkedListAbstract<Guid> InitializeEmptyLinkedList()
+    protected override SinglyLinkedListAbstract<Guid> InitializeEmptyLinkedList()
     {
         return new SinglyLinkedList<Guid>();
     }
 
-    protected override LinkedListAbstract<Guid> InitializeNonEmptyLinkedList()
+    protected override SinglyLinkedListAbstract<Guid> InitializeNonEmptyLinkedList()
     {
         SinglyLinkedList<Guid> linkedList = new SinglyLinkedList<Guid>();
         for(int i = 0; i < 100; i ++) {

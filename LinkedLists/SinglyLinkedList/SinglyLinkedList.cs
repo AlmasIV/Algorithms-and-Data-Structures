@@ -7,7 +7,7 @@ namespace SinglyLinkedList;
 /// <typeparam name="T">
 /// 	The type of elements stored in the singly-linked list nodes.
 /// </typeparam>
-public class SinglyLinkedList<T> : LinkedListAbstract<T>
+public class SinglyLinkedList<T> : SinglyLinkedListAbstract<T>
 {
 	/// <inheritdoc />
 	/// <exception cref="ArgumentNullException">
