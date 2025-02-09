@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SinglyLinkedList", "SinglyLinkedList.csproj", "{4CF070FA-2293-45FC-8C67-7E9FEE4B4024}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnglyLinkedList.Tests", "..\Tests\SnglyLinkedList.Tests\SnglyLinkedList.Tests.csproj", "{C869AF30-B51E-4CB7-8A6E-A0AEA1509D6D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SinglyLinkedList.Tests", "..\Tests\SinglyLinkedList.Tests\SinglyLinkedList.Tests.csproj", "{C869AF30-B51E-4CB7-8A6E-A0AEA1509D6D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
