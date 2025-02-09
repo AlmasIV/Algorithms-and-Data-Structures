@@ -1,7 +1,7 @@
 namespace SinglyLinkedList.Tests;
 
 [TestClass()]
-public abstract class LinkedListTestsAbstract<T>
+public abstract class SinglyLinkedListTestsAbstract<T>
 {
 	protected abstract SinglyLinkedListAbstract<T> InitializeEmptyLinkedList();
 	protected abstract SinglyLinkedListAbstract<T> InitializeNonEmptyLinkedList();
