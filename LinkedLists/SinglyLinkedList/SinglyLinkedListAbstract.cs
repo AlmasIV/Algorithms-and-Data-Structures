@@ -3,7 +3,7 @@ using System.Collections;
 namespace SinglyLinkedList;
 
 /// <summary>
-/// 	Defines an abstract base class for a linked list structures.
+/// 	Defines an abstract base class for a singly linked list structures.
 /// </summary>
 /// <typeparam name="T">
 /// 	The type of elements stored in the linked list nodes.
