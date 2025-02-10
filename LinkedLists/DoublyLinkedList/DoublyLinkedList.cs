@@ -6,4 +6,7 @@ namespace DoublyLinkedList;
 /// 	Defines an abstract base class for a doubly linked list structures.
 /// </summary>
 /// <inheritdoc />
-public abstract class DoublyLinkedList<T> : SinglyLinkedListAbstract<T> {}
+public class DoublyLinkedList<T> : SinglyLinkedList<T> {
+	protected new DoublyNode<T>? Head { get; set; }
+	protected DoublyNode<T>? Tail { get; set; }
+}
