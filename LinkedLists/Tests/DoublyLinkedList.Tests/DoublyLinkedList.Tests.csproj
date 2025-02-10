@@ -17,7 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="DoublyLinkedList.Tests.csproj" />
     <ProjectReference Include="..\..\DoublyLinkedList\DoublyLinkedList.csproj" />
     <ProjectReference Include="..\SinglyLinkedList.Tests\SinglyLinkedList.Tests.csproj" />
     <ProjectReference Include="..\..\SinglyLinkedList\SinglyLinkedList.csproj" />
