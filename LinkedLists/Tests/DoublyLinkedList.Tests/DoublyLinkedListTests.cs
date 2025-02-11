@@ -78,4 +78,13 @@ public class AppendNodeTests
 
 		Assert.AreEqual(expected, actual, "Appended node should point to the node before itself.");
 	}
+
+	[TestMethod()]
+	[ExpectedException(typeof(ArgumentNullException))]
+	public void AppendNode_AppendingNull_ThrowsArgumentNullException() {
+		DoublyLinkedList<Guid> linkedList = InitializeNonEmptyLinkedList();
+		Node<Guid>? node = null;
+
+		linkedList.AppendNode(node!);
+	}
 }
