@@ -18,6 +18,7 @@ public class DoublyLinkedList<T> : IEnumerable<Node<T>> {
 			node.Previous = Tail;
 			Tail = node;
 		}
+		Length ++;
 	}
 
     public IEnumerator<Node<T>> GetEnumerator()
