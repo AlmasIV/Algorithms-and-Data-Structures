@@ -1,4 +1,4 @@
-namespace DoublyLinkedList.Tests.AppendNode;
+namespace DoublyLinkedList.Tests;
 
 [TestClass()]
 public class AppendNodeTests
