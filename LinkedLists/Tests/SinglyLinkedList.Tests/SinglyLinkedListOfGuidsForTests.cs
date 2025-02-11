@@ -17,7 +17,8 @@ public class SinglyLinkedListOfGuidsTests : SinglyLinkedListTestsAbstract<Guid>
     protected override SinglyLinkedListAbstract<Guid> InitializeNonEmptyLinkedList()
     {
         SinglyLinkedList<Guid> linkedList = new SinglyLinkedList<Guid>();
-        for(int i = 0; i < 100; i ++) {
+        for (int i = 0; i < 100; i++)
+        {
             linkedList.AppendNode(new Node<Guid>(Guid.NewGuid()));
         }
         return linkedList;
