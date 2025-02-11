@@ -3,7 +3,7 @@ namespace DoublyLinkedList.Tests;
 [TestClass()]
 public class AppendNodeTests
 {
-	private Node<Guid> _newNode = SUTInitializer.NewNode;
+	private Node<Guid> _newNode => SUTInitializer.NewNode;
 	private Func<DoublyLinkedList<Guid>> InitializeNonEmptyLinkedList = SUTInitializer.InitializeNonEmptyLinkedList;
 	private void TestAppendingOnEmptyList(Action<DoublyLinkedList<Guid>, Node<Guid>> test)
 	{
