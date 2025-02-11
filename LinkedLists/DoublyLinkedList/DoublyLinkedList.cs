@@ -21,6 +21,20 @@ public class DoublyLinkedList<T> : IEnumerable<Node<T>> {
 		Length ++;
 	}
 
+	public void PrependNode(Node<T> node) {
+		ArgumentNullException.ThrowIfNull(node);
+		if(Head is null) {
+			Head = node;
+			Tail = node;
+		}
+		else {
+			Head.Previous = node;
+			node.Next = Head;
+			Head = node;
+		}
+		Length ++;
+	}
+
     public IEnumerator<Node<T>> GetEnumerator()
     {
 		Node<T>? temp = Head;
