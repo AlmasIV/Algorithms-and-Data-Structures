@@ -77,7 +77,7 @@ public class PrependNodeTests
 	{
 		DoublyLinkedList<Guid> linkedList = InitializeNonEmptyLinkedLsit();
 		Node<Guid> node = _newNode;
-		
+
 		linkedList.PrependNode(node);
 
 		Assert.AreEqual(null, linkedList.First().Previous, "Prepended hode has no node before itself.");
