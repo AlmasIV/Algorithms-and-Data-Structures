@@ -124,7 +124,7 @@ public class DoublyLinkedList<T> : IEnumerable<Node<T>>
 		node.Previous = null;
 		node.Next = null;
 		node.Value = default;
-		node.LinkedListId = null;
+		node.LinkedListId = default;
 	}
 
 	public IEnumerator<Node<T>> GetEnumerator()
