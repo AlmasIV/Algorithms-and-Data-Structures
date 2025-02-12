@@ -65,7 +65,7 @@ public class DeleteFirstTests
 	}
 
 	[TestMethod()]
-	public void DeleteFirst_DeletingOnNonEmptyLinkedList_DeletedNodeLinkedListIdIsNull()
+	public void DeleteFirst_DeletingOnNonEmptyLinkedList_DeletedNodeLinkedListIdIsDefault()
 	{
 		DoublyLinkedList<Guid> linkedList = InitializeNonEmptyLinkedList();
 		Node<Guid> headNode = linkedList.Head!;
