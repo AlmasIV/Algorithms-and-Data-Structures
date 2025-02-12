@@ -99,4 +99,27 @@ public class AppendNodeTests
 
 		Assert.AreEqual(null, linkedList.Last().Next, "Appended node should point to null.");
 	}
+
+	[TestMethod()]
+	[ExpectedException(typeof(ArgumentException), "A node cannot belong to 2 or more linked lists.")]
+	public void AppendNode_AppendingNodeFromAnotherLinkedList_ThrowsArgumentException()
+	{
+		DoublyLinkedList<Guid> linkedList1 = new DoublyLinkedList<Guid>();
+		DoublyLinkedList<Guid> linkedList2 = new DoublyLinkedList<Guid>();
+		Node<Guid> node = new Node<Guid>(Guid.NewGuid());
+		linkedList1.AppendNode(node);
+
+		linkedList2.AppendNode(node);
+	}
+
+	[TestMethod()]
+	[ExpectedException(typeof(ArgumentException), "A node cannot point to itself.")]
+	public void AppendNode_AppendingTheSameNodeTwice_ThrowsArgumentException()
+	{
+		DoublyLinkedList<Guid> linkedList = new DoublyLinkedList<Guid>();
+		Node<Guid> node = new Node<Guid>(Guid.NewGuid());
+
+		linkedList.AppendNode(node);
+		linkedList.AppendNode(node);
+	}
 }
