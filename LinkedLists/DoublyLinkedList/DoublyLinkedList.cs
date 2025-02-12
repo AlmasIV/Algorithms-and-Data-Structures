@@ -116,7 +116,7 @@ public class DoublyLinkedList<T> : IEnumerable<Node<T>>
 
 	private bool IsStandAloneNode(Node<T> node)
 	{
-		return node.Next is null && node.Previous is null && node.LinkedListId is null;
+		return node.Next is null && node.Previous is null && node.LinkedListId == Guid.Empty;
 	}
 
 	private void ResetNode(Node<T> node)
