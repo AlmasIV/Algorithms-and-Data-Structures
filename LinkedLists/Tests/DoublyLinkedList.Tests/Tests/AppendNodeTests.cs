@@ -80,11 +80,23 @@ public class AppendNodeTests
 	}
 
 	[TestMethod()]
-	[ExpectedException(typeof(ArgumentNullException))]
-	public void AppendNode_AppendingNull_ThrowsArgumentNullException() {
+	[ExpectedException(typeof(ArgumentNullException), "Appending null should throw an exception.")]
+	public void AppendNode_AppendingNull_ThrowsArgumentNullException()
+	{
 		DoublyLinkedList<Guid> linkedList = InitializeNonEmptyLinkedList();
 		Node<Guid>? node = null;
 
 		linkedList.AppendNode(node!);
+	}
+
+	[TestMethod()]
+	public void AppendNode_AppendingOnNonEmptyLinkedList_AppendedNodeNextShouldBeNull()
+	{
+		DoublyLinkedList<Guid> linkedList = InitializeNonEmptyLinkedList();
+		Node<Guid> node = _newNode;
+
+		linkedList.AppendNode(node);
+
+		Assert.AreEqual(null, linkedList.Last().Next, "Appended node should point to null.");
 	}
 }
