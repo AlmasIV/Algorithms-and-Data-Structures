@@ -3,7 +3,6 @@ namespace DoublyLinkedList.Tests;
 [TestClass()]
 public class DeleteFirstTests
 {
-	private Node<Guid> _newNode => SUTInitializer.NewNode;
 	private Func<DoublyLinkedList<Guid>> InitializeNonEmptyLinkedList = SUTInitializer.InitializeNonEmptyLinkedList;
 
 	[TestMethod()]
