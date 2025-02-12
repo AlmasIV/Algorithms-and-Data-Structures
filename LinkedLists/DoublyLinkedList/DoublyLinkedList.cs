@@ -26,6 +26,7 @@ public class DoublyLinkedList<T> : IEnumerable<Node<T>>
 			node.Previous = Tail;
 			Tail = node;
 		}
+		node.LinkedListId = Id;
 		Length++;
 	}
 
@@ -47,12 +48,13 @@ public class DoublyLinkedList<T> : IEnumerable<Node<T>>
 			node.Next = Head;
 			Head = node;
 		}
+		node.LinkedListId = Id;
 		Length++;
 	}
 
 	private bool IsStandAloneNode(Node<T> node)
 	{
-		return node.Next is null && node.Previous is null;
+		return node.Next is null && node.Previous is null && node.LinkedListId is null;
 	}
 
 	public IEnumerator<Node<T>> GetEnumerator()
