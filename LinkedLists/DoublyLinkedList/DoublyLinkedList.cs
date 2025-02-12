@@ -7,7 +7,7 @@ public class DoublyLinkedList<T> : IEnumerable<Node<T>>
 	public ulong Length { get; private set; }
 	public Node<T>? Head { get; private set; }
 	public Node<T>? Tail { get; private set; }
-
+	public Guid Id { get; private set; } = Guid.NewGuid();
 	public void AppendNode(Node<T> node)
 	{
 		ArgumentNullException.ThrowIfNull(node);
