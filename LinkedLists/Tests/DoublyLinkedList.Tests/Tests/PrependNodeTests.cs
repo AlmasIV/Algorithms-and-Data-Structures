@@ -4,13 +4,13 @@ namespace DoublyLinkedList.Tests;
 public class PrependNodeTests
 {
 	private Node<Guid> _newNode => SUTInitializer.NewNode;
-	private Func<DoublyLinkedList<Guid>> InitializeNonEmptyLinkedLsit = SUTInitializer.InitializeNonEmptyLinkedList;
+	private Func<DoublyLinkedList<Guid>> InitializeNonEmptyLinkedList = SUTInitializer.InitializeNonEmptyLinkedList;
 
 	[TestMethod()]
 	[ExpectedException(typeof(ArgumentNullException), "Passing null should throw an exception.")]
 	public void PrependNode_PrependingNull_ThrowsArgumentNullException()
 	{
-		DoublyLinkedList<Guid> linkedList = InitializeNonEmptyLinkedLsit();
+		DoublyLinkedList<Guid> linkedList = InitializeNonEmptyLinkedList();
 		Node<Guid>? node = null;
 
 		linkedList.AppendNode(node!);
@@ -52,7 +52,7 @@ public class PrependNodeTests
 	[TestMethod()]
 	public void PrependNode_PrependingOnNonEmptyLinkedList_HeadPointsToTheNode()
 	{
-		DoublyLinkedList<Guid> linkedList = InitializeNonEmptyLinkedLsit();
+		DoublyLinkedList<Guid> linkedList = InitializeNonEmptyLinkedList();
 		Node<Guid> node = _newNode;
 
 		linkedList.PrependNode(node);
@@ -63,7 +63,7 @@ public class PrependNodeTests
 	[TestMethod()]
 	public void PrependNode_PrependingOnNonEmptyLinkedList_IncrementsLength()
 	{
-		DoublyLinkedList<Guid> linkedList = InitializeNonEmptyLinkedLsit();
+		DoublyLinkedList<Guid> linkedList = InitializeNonEmptyLinkedList();
 		Node<Guid> node = _newNode;
 		ulong expectedLength = linkedList.Length + 1;
 
