@@ -67,7 +67,7 @@ public class AppendNodeTests
 	}
 
 	[TestMethod()]
-	public void AppendNode_AppendingOnNonEmptyLinkedList_AppendedNodeTailPointsToTheElementBeforeItself()
+	public void AppendNode_AppendingOnNonEmptyLinkedList_AppendedNodePreviousPointsToTheElementBeforeItself()
 	{
 		DoublyLinkedList<Guid> linkedList = InitializeNonEmptyLinkedList();
 		Node<Guid> node = _newNode;

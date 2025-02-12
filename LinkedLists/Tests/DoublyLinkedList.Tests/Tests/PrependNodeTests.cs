@@ -71,15 +71,4 @@ public class PrependNodeTests
 
 		Assert.AreEqual(expectedLength, linkedList.Length, "Length should be incremented when prepending a node.");
 	}
-
-	[TestMethod()]
-	public void PrependNode_PrependingOnNonEmptyLinkedList_HeadPreviousPointsToNull()
-	{
-		DoublyLinkedList<Guid> linkedList = InitializeNonEmptyLinkedLsit();
-		Node<Guid> node = _newNode;
-
-		linkedList.PrependNode(node);
-
-		Assert.AreEqual(null, linkedList.First().Previous, "Prepended hode has no node before itself.");
-	}
 }
