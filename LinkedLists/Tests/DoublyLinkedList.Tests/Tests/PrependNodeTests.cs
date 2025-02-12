@@ -71,4 +71,27 @@ public class PrependNodeTests
 
 		Assert.AreEqual(expectedLength, linkedList.Length, "Length should be incremented when prepending a node.");
 	}
+
+	[TestMethod()]
+	[ExpectedException(typeof(ArgumentException), "A node cannot belong to several linked lists.")]
+	public void PrependNode_PrependingTheNodeThatExistsInAnotherLinkedList_ThrowsArgumentException()
+	{
+		DoublyLinkedList<Guid> linkedList1 = new DoublyLinkedList<Guid>();
+		DoublyLinkedList<Guid> linkedList2 = new DoublyLinkedList<Guid>();
+		Node<Guid> node = new Node<Guid>(Guid.NewGuid());
+		linkedList1.PrependNode(node);
+
+		linkedList2.PrependNode(node);
+	}
+
+	[TestMethod()]
+	[ExpectedException(typeof(ArgumentException), "A node must be unique in the linked list.")]
+	public void PrependNode_PrependingTheNodeTwice_ThrowsArgumentException()
+	{
+		DoublyLinkedList<Guid> linkedList = new DoublyLinkedList<Guid>();
+		Node<Guid> node = new Node<Guid>(Guid.NewGuid());
+
+		linkedList.PrependNode(node);
+		linkedList.PrependNode(node);
+	}
 }
