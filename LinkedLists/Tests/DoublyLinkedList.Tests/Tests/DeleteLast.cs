@@ -6,15 +6,12 @@ public class DeleteLastTests
 	private Func<DoublyLinkedList<Guid>> InitializeNonEmptyLinkedList = SUTInitializer.InitializeNonEmptyLinkedList;
 
 	[TestMethod()]
-	public void DeleteLast_DeletingOnEmptyLinkedList_DoesNothing()
+	[ExpectedException(typeof(InvalidOperationException), "Deleting on empty linked list should throw an exception.")]
+	public void DeleteLast_DeletingOnEmptyLinkedList_ThrowsInvalidOperationException()
 	{
 		DoublyLinkedList<Guid> linkedList = new DoublyLinkedList<Guid>();
-		ulong expectedLength = linkedList.Length;
 
 		linkedList.DeleteLast();
-		ulong actualLength = linkedList.Length;
-
-		Assert.AreEqual(expectedLength, actualLength);
 	}
 
 	[TestMethod()]

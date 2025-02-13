@@ -55,11 +55,11 @@ public class DoublyLinkedList<T> : IEnumerable<Node<T>>
 	public void DeleteNodeByReference(Node<T> node)
 	{
 		ArgumentNullException.ThrowIfNull(node);
-		if (!IsStandAloneNode(node))
+		if (node.LinkedListId != Id)
 		{
 			throw new ArgumentException("The node belongs to another linked list.", nameof(node));
 		}
-		if (Length > 0 && Head == node)
+		if (Head == node)
 		{
 			DeleteFirst();
 		}
@@ -90,7 +90,11 @@ public class DoublyLinkedList<T> : IEnumerable<Node<T>>
 
 	public void DeleteFirst()
 	{
-		if (Head is not null)
+		if (Head is null)
+		{
+			throw new InvalidOperationException("The linked list is empty.");
+		}
+		else
 		{
 			Node<T> temp = Head;
 			Head = Head.Next;
@@ -105,12 +109,15 @@ public class DoublyLinkedList<T> : IEnumerable<Node<T>>
 
 	public void DeleteLast()
 	{
-		if (Tail is not null)
+		if(Head is null) {
+			throw new InvalidOperationException("The linked list is empty.");
+		}
+		else
 		{
-			Node<T> temp = Tail;
-			Tail = Tail.Previous;
+			Node<T> temp = Tail!;
+			Tail = Tail!.Previous;
 			ResetNode(temp);
-			Length --;
+			Length--;
 		}
 	}
 
