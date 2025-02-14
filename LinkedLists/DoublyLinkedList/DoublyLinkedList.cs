@@ -102,7 +102,8 @@ public class DoublyLinkedList<T> : IEnumerable<Node<T>>
 			{
 				Head.Previous = null;
 			}
-			else {
+			else
+			{
 				Tail = null;
 			}
 			ResetNode(temp);
@@ -112,13 +113,19 @@ public class DoublyLinkedList<T> : IEnumerable<Node<T>>
 
 	public void DeleteLast()
 	{
-		if(Head is null) {
+		if (Head is null)
+		{
 			throw new InvalidOperationException("The linked list is empty.");
 		}
 		else
 		{
 			Node<T> temp = Tail!;
-			if(Head == Tail) {
+			if (Tail!.Previous is not null)
+			{
+				Tail.Previous.Next = null;
+			}
+			else
+			{
 				Head = null;
 			}
 			Tail = Tail!.Previous;
