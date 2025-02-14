@@ -102,6 +102,9 @@ public class DoublyLinkedList<T> : IEnumerable<Node<T>>
 			{
 				Head.Previous = null;
 			}
+			else {
+				Tail = null;
+			}
 			ResetNode(temp);
 			Length--;
 		}
@@ -115,6 +118,9 @@ public class DoublyLinkedList<T> : IEnumerable<Node<T>>
 		else
 		{
 			Node<T> temp = Tail!;
+			if(Head == Tail) {
+				Head = null;
+			}
 			Tail = Tail!.Previous;
 			ResetNode(temp);
 			Length--;
