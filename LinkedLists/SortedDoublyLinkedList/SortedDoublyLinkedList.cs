@@ -18,22 +18,32 @@ public sealed class SortedLinkedList<T> : IEnumerable<T> where T : IComparable<T
 		}
 		else {
 			while(temp is not null) {
-				if(temp.Value.CompareTo(value) == -1) {
-					node.Next = temp.Next;
-					node.Previous = temp;
-					if(node.Next is not null) {
-						node.Next.Previous = node;
+				if(temp.Value.CompareTo(value) == 1) {
+					if(temp.Previous is null) {
+						node.Next = temp;
+						temp.Previous = node;
+						Head = temp;
 					}
-					temp.Next = node;
+					else {
+						temp.Previous.Next = node;
+						node.Previous = temp.Previous;
+						temp.Previous = node;
+						node.Next = temp;
+					}
+					break;
 				}
 				else {
 					if(temp.Next is null) {
 						node.Previous = temp;
 						temp.Next = node;
+						Tail = node;
+						break;
 					}
 				}
+				temp = temp.Next;
 			}
 		}
+		Length ++;
 	}
 	public IEnumerator<T> GetEnumerator()
 	{

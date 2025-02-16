@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SortedDoublyLinkedList", "SortedDoublyLinkedList.csproj", "{F4C236B1-1796-4B75-846C-CC00C8C0B2C7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SortedDoublyLinkedList.Tests", "..\Tests\SortedDoublyLinkedList.Tests\SortedDoublyLinkedList.Tests.csproj", "{89791944-3E8B-47DD-BEA8-88D5AAFF145B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{F4C236B1-1796-4B75-846C-CC00C8C0B2C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F4C236B1-1796-4B75-846C-CC00C8C0B2C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F4C236B1-1796-4B75-846C-CC00C8C0B2C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89791944-3E8B-47DD-BEA8-88D5AAFF145B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89791944-3E8B-47DD-BEA8-88D5AAFF145B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89791944-3E8B-47DD-BEA8-88D5AAFF145B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89791944-3E8B-47DD-BEA8-88D5AAFF145B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
