@@ -115,4 +115,30 @@ public class DeleteNodeByReferenceTests
 
 		Assert.AreEqual(expected, actual);
 	}
+
+	[TestMethod()]
+	public void DeleteNodeByReference_DeletingMiddleNode_PreviousNodePointsToNextNodeCorrectly()
+	{
+		DoublyLinkedList<Guid> linkedList = InitializeNonEmptyLinkedList();
+		Node<Guid> middleNode = linkedList.Skip((int)(linkedList.Length / 2)).First();
+		Node<Guid> previousNode = middleNode.Previous!;
+		Node<Guid> nextNode = middleNode.Next!;
+
+		linkedList.DeleteNodeByReference(middleNode);
+
+		Assert.AreEqual(previousNode.Next, nextNode);
+	}
+
+	[TestMethod()]
+	public void DeleteNodeByReference_DeletingMiddleNode_NextNodePointsToPreviousNodeCorrectly()
+	{
+		DoublyLinkedList<Guid> linkedList = InitializeNonEmptyLinkedList();
+		Node<Guid> middleNode = linkedList.Skip((int)(linkedList.Length / 2)).First();
+		Node<Guid> previousNode = middleNode.Previous!;
+		Node<Guid> nextNode = middleNode.Next!;
+
+		linkedList.DeleteNodeByReference(middleNode);
+
+		Assert.AreEqual(nextNode.Previous, previousNode);
+	}
 }
