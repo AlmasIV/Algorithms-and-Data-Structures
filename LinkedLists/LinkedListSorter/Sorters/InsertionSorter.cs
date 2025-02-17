@@ -1,5 +1,7 @@
 namespace LinkedListSorter;
 
+// The performance of my algorithm could be improved drastically by shifting instead of reinserting.
+
 public static class InsertionSorter<T> where T : IComparable<T>
 {
 	public static void Sort(LinkedList<T> linkedList)
