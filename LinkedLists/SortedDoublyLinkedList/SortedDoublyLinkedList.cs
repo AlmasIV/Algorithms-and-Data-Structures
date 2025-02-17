@@ -12,19 +12,25 @@ public sealed class SortedLinkedList<T> : IEnumerable<T> where T : IComparable<T
 		ArgumentNullException.ThrowIfNull(value);
 		Node node = new Node() { Value = value };
 		Node? temp = Head;
-		if(temp is null) {
+		if (temp is null)
+		{
 			Head = node;
 			Tail = Head;
 		}
-		else {
-			while(temp is not null) {
-				if(temp.Value.CompareTo(value) == 1) {
-					if(temp.Previous is null) {
+		else
+		{
+			while (temp is not null)
+			{
+				if (temp.Value.CompareTo(value) == 1)
+				{
+					if (temp.Previous is null)
+					{
 						node.Next = temp;
 						temp.Previous = node;
 						Head = temp;
 					}
-					else {
+					else
+					{
 						temp.Previous.Next = node;
 						node.Previous = temp.Previous;
 						temp.Previous = node;
@@ -32,8 +38,10 @@ public sealed class SortedLinkedList<T> : IEnumerable<T> where T : IComparable<T
 					}
 					break;
 				}
-				else {
-					if(temp.Next is null) {
+				else
+				{
+					if (temp.Next is null)
+					{
 						node.Previous = temp;
 						temp.Next = node;
 						Tail = node;
@@ -43,7 +51,20 @@ public sealed class SortedLinkedList<T> : IEnumerable<T> where T : IComparable<T
 				temp = temp.Next;
 			}
 		}
-		Length ++;
+		Length++;
+	}
+	public SortedLinkedList<T> Copy()
+	{
+		SortedLinkedList<T> copy = new SortedLinkedList<T>();
+
+		Node? temp = Head;
+
+		while(temp is not null) {
+			copy.AddNode(temp.Value);
+			temp = temp.Next;
+		}
+
+		return copy;
 	}
 	public IEnumerator<T> GetEnumerator()
 	{
