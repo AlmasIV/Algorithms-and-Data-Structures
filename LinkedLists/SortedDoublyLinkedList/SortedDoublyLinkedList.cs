@@ -5,7 +5,6 @@ namespace SortedDoublyLinkedList;
 public sealed class SortedLinkedList<T> : IEnumerable<T> where T : IComparable<T>
 {
 	private Node? Head { get; set; }
-	private Node? Tail { get; set; }
 	public ulong Length { get; set; } = 0;
 	public void AddNode(T value)
 	{
@@ -15,7 +14,7 @@ public sealed class SortedLinkedList<T> : IEnumerable<T> where T : IComparable<T
 		if (temp is null)
 		{
 			Head = node;
-			Tail = Head;
+			Length ++;
 		}
 		else
 		{
@@ -27,7 +26,7 @@ public sealed class SortedLinkedList<T> : IEnumerable<T> where T : IComparable<T
 					{
 						node.Next = temp;
 						temp.Previous = node;
-						Head = temp;
+						Head = node;
 					}
 					else
 					{
@@ -36,6 +35,7 @@ public sealed class SortedLinkedList<T> : IEnumerable<T> where T : IComparable<T
 						temp.Previous = node;
 						node.Next = temp;
 					}
+					Length ++;
 					break;
 				}
 				else
@@ -44,14 +44,13 @@ public sealed class SortedLinkedList<T> : IEnumerable<T> where T : IComparable<T
 					{
 						node.Previous = temp;
 						temp.Next = node;
-						Tail = node;
+						Length ++;
 						break;
 					}
 				}
 				temp = temp.Next;
 			}
 		}
-		Length++;
 	}
 	public SortedLinkedList<T> Copy()
 	{
@@ -59,7 +58,8 @@ public sealed class SortedLinkedList<T> : IEnumerable<T> where T : IComparable<T
 
 		Node? temp = Head;
 
-		while(temp is not null) {
+		while (temp is not null)
+		{
 			copy.AddNode(temp.Value);
 			temp = temp.Next;
 		}
