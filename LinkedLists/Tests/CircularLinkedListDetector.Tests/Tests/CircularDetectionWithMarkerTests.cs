@@ -77,7 +77,7 @@ public class CircularDetectionWithMarkerTests
 		head.Next = head;
 		bool expected = true;
 
-		bool actual = CircularDetectionWithMarker<int>.HasLoop(head);
+		bool actual = CircularDetectionWithMarker<int>.HasLoop(head, true);
 
 		Assert.AreEqual(expected, actual);
 	}
