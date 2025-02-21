@@ -1,7 +1,7 @@
 namespace CircularLinkedListDetector.Tests;
 
 [TestClass()]
-public class ListApproachTests
+public class FloydsAlgorithmTests
 {
 	[TestMethod()]
 	public void HasLoop_CallingOnNullNode_ReturnsFalse()
@@ -9,7 +9,7 @@ public class ListApproachTests
 		Node<int>? node = null;
 		bool expected = false;
 
-		bool actual = ListApproach<int>.HasLoop(node!);
+		bool actual = FloydsAlgorithm<int>.HasLoop(node!);
 
 		Assert.AreEqual(expected, actual);
 	}
@@ -20,7 +20,7 @@ public class ListApproachTests
 		Node<int>? node = new Node<int>();
 		bool expected = false;
 
-		bool actual = ListApproach<int>.HasLoop(node);
+		bool actual = FloydsAlgorithm<int>.HasLoop(node);
 
 		Assert.AreEqual(expected, actual);
 	}
@@ -32,7 +32,7 @@ public class ListApproachTests
 		node.Next = node;
 		bool expected = true;
 
-		bool actual = ListApproach<int>.HasLoop(node);
+		bool actual = FloydsAlgorithm<int>.HasLoop(node);
 
 		Assert.AreEqual(expected, actual);
 	}
@@ -43,7 +43,7 @@ public class ListApproachTests
 		Node<int> head = CircularListProvider.GetCircularLinkedList();
 		bool expected = true;
 
-		bool actual = ListApproach<int>.HasLoop(head);
+		bool actual = FloydsAlgorithm<int>.HasLoop(head);
 
 		Assert.AreEqual(expected, actual);
 	}
@@ -55,7 +55,7 @@ public class ListApproachTests
 		node.Next = node;
 		bool expected = true;
 
-		bool actual = ListApproach<int>.HasLoop(node, true);
+		bool actual = FloydsAlgorithm<int>.HasLoop(node, true);
 
 		Assert.AreEqual(expected, actual);
 	}
@@ -67,7 +67,7 @@ public class ListApproachTests
 		head.Next = head;
 		bool expected = true;
 
-		ListApproach<int>.HasLoop(head, true);
+		FloydsAlgorithm<int>.HasLoop(head, true);
 		bool actual = head.Next is null;
 
 		Assert.AreEqual(expected, actual);
@@ -79,7 +79,7 @@ public class ListApproachTests
 		Node<int> head = CircularListProvider.GetCircularLinkedList();
 		bool expected = false;
 
-		ListApproach<int>.HasLoop(head, true);
+		FloydsAlgorithm<int>.HasLoop(head, true);
 		bool actual = false;
 		Node<int>? current = head;
 		int counter = 0;
