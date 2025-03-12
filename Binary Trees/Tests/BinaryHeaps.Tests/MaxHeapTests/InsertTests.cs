@@ -40,27 +40,8 @@ public class InsertTests
         {
             heap.Insert(ints[i]);
         }
-        bool actual = IsMaxHeap(heap.ToArray());
+        bool actual = MaxHeap<int>.IsMaxHeap(heap.ToArray());
 
         Assert.AreEqual(expected, actual);
-    }
-    private bool IsMaxHeap(int[] binaryTree)
-    {
-        int left, right;
-        int maxParentIndex = (binaryTree.Length - 2) / 2;
-        for (int i = 0; i <= maxParentIndex; i++)
-        {
-            left = 2 * i + 1;
-            right = 2 * i + 2;
-            if (left < binaryTree.Length && binaryTree[i] < binaryTree[left])
-            {
-                return false;
-            }
-            if (right < binaryTree.Length && binaryTree[i] < binaryTree[right])
-            {
-                return false;
-            }
-        }
-        return true;
     }
 }

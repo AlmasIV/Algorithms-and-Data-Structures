@@ -56,6 +56,26 @@ public class MaxHeap<T> : IEnumerable<T> where T : IComparable<T>
 		Array.Copy(_items, newArray, Length);
 	}
 
+	public static bool IsMaxHeap(T[] binaryTree)
+	{
+		int left, right;
+		int maxParentIndex = (binaryTree.Length - 2) / 2;
+		for (int i = 0; i <= maxParentIndex; i++)
+		{
+			left = 2 * i + 1;
+			right = 2 * i + 2;
+			if (left < binaryTree.Length && binaryTree[i].CompareTo(binaryTree[left]) < 0)
+			{
+				return false;
+			}
+			if (right < binaryTree.Length && binaryTree[i].CompareTo(binaryTree[right]) < 0)
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+
 	public IEnumerator<T> GetEnumerator()
 	{
 		for (int i = 0; i < Length; i++)
