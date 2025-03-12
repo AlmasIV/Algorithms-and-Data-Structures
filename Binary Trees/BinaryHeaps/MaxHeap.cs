@@ -38,7 +38,7 @@ public class MaxHeap<T> : IEnumerable<T> where T : IComparable<T>
 		_items[Length++] = value;
 		int valuePointer = Length - 1;
 		int parentIndex = (valuePointer - 1) / 2;
-		while (parentIndex >= 0 && _items[parentIndex].CompareTo(value) < 0)
+		while (valuePointer > 0 && _items[parentIndex].CompareTo(_items[valuePointer]) < 0)
 		{
 			T temp = _items[parentIndex];
 			_items[parentIndex] = value;
