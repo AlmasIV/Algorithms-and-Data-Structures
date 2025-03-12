@@ -6,7 +6,7 @@ class Program
 {
     static void Main()
     {
-        int[] ints = { 0, 2, 3, 11, 20 };
+        int[] ints = { 0, 99, -21, 2, 22, 20 };
         MaxHeap<int> heap = new();
         Console.WriteLine("Before:");
         ConsolePrinter<int>.Print(ints);
