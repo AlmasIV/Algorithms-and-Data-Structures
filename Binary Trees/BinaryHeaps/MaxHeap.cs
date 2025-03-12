@@ -51,6 +51,34 @@ public class MaxHeap<T> : IEnumerable<T> where T : IComparable<T>
 			parentIndex = (index - 1) / 2;
 		}
 	}
+	private void HeapifyDown(int index)
+	{
+		int left, right, largestIndex;
+		while (true)
+		{
+			left = 2 * index + 1;
+			right = 2 * index + 2;
+			largestIndex = index;
+
+			if (left < Length && _items[largestIndex].CompareTo(_items[left]) < 0)
+			{
+				largestIndex = left;
+			}
+			if (right < Length && _items[largestIndex].CompareTo(_items[right]) < 0)
+			{
+				largestIndex = right;
+			}
+
+			if(largestIndex == index) {
+				break;
+			}
+
+			T temp = _items[largestIndex];
+			_items[largestIndex] = _items[index];
+			_items[index] = temp;
+			index = largestIndex;
+		}
+	}
 	private void Resize(int newSize)
 	{
 		newSize = Math.Max(newSize, _defaultSize);
