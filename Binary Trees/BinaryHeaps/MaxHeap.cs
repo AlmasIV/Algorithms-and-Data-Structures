@@ -9,11 +9,9 @@ public class MaxHeap<T> : IEnumerable<T> where T : IComparable<T>
 	public int Length { get; private set; } = 0;
 	public T this[int index]
 	{
-		get {
-			if(index < 0) {
-				throw new ArgumentOutOfRangeException(nameof(index), "The index cannot be negative.");
-			}
-			if(index >= Length) {
+		get
+		{
+			if (index < 0 || index >= Length) {
 				throw new ArgumentOutOfRangeException(nameof(index), "The index is out of range.");
 			}
 			return _items[index];
@@ -58,6 +56,11 @@ public class MaxHeap<T> : IEnumerable<T> where T : IComparable<T>
 
 	public static bool IsMaxHeap(T[] binaryTree)
 	{
+		ArgumentNullException.ThrowIfNull(binaryTree);
+		if (binaryTree.Length == 0)
+		{
+			return false;
+		}
 		int left, right;
 		int maxParentIndex = (binaryTree.Length - 2) / 2;
 		for (int i = 0; i <= maxParentIndex; i++)
