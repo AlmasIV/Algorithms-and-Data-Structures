@@ -8,7 +8,7 @@ namespace ConsolePrinter;
 */
 public static class ConsolePrinter<T>
 {
-	private static int s_defaultSpaceSize = 8;
+	private static int s_defaultSpaceSize = 16;
 	private static int CalculateDepth(int size)
 	{
 		return (int)Math.Floor(Math.Log2(size));
@@ -34,7 +34,8 @@ public static class ConsolePrinter<T>
 		int maxDepth = CalculateDepth(binaryTree.Length);
 		int currentDepth = 0;
 		int maxSpace = (int)Math.Pow(2, currentDepth) * 2;
-		string space = Repeat(" ", s_defaultSpaceSize);
+		int defaultSpaceSize = s_defaultSpaceSize;
+		string space = Repeat(" ", defaultSpaceSize);
 		for (int i = 0; i < binaryTree.Length; i++)
 		{
 			output.Append(space);
@@ -51,8 +52,8 @@ public static class ConsolePrinter<T>
 				spaceDrawn = 0;
 				currentDepth ++;
 				maxSpace = (int)Math.Pow(2, currentDepth) * 2;
-				s_defaultSpaceSize /= 2;
-				space = Repeat(" ", s_defaultSpaceSize);
+				defaultSpaceSize /= 2;
+				space = Repeat(" ", defaultSpaceSize);
 			}
 		}
 		Console.WriteLine(output.ToString());
