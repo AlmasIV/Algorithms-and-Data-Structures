@@ -11,7 +11,8 @@ public class MaxHeap<T> : IEnumerable<T> where T : IComparable<T>
 	{
 		get
 		{
-			if (index < 0 || index >= Length) {
+			if (index < 0 || index >= Length)
+			{
 				throw new ArgumentOutOfRangeException(nameof(index), "The index is out of range.");
 			}
 			return _items[index];
@@ -36,15 +37,18 @@ public class MaxHeap<T> : IEnumerable<T> where T : IComparable<T>
 			Resize((int)Math.Ceiling(_items.Length * 1.5));
 		}
 		_items[Length++] = value;
-		int valuePointer = Length - 1;
-		int parentIndex = (valuePointer - 1) / 2;
-		while (valuePointer > 0 && _items[parentIndex].CompareTo(_items[valuePointer]) < 0)
+		HeapifyUp(Length - 1);
+	}
+	private void HeapifyUp(int index)
+	{
+		int parentIndex = (index - 1) / 2;
+		while (index > 0 && _items[parentIndex].CompareTo(_items[index]) < 0)
 		{
 			T temp = _items[parentIndex];
-			_items[parentIndex] = value;
-			_items[valuePointer] = temp;
-			valuePointer = parentIndex;
-			parentIndex = (valuePointer - 1) / 2;
+			_items[parentIndex] = _items[index];
+			_items[index] = temp;
+			index = parentIndex;
+			parentIndex = (index - 1) / 2;
 		}
 	}
 	private void Resize(int newSize)
