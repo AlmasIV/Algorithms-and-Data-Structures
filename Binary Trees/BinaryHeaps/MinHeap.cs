@@ -47,6 +47,7 @@ public class MinHeap<T> : IEnumerable<T> where T : IComparable<T>
 		}
 		T result = _items[0];
 		_items[0] = _items[--Length];
+		_items[Length] = default!;
 		HeapifyDown(0);
 		return result;
 	}
