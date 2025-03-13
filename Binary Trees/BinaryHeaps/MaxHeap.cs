@@ -50,6 +50,19 @@ public class MaxHeap<T> : IEnumerable<T> where T : IComparable<T>
 		HeapifyDown(0);
 		return result;
 	}
+
+	// Why? Because this is more efficient than calling Insert then RemoveTopItem.
+	public T InsertRemoveTopItem(T value)
+	{
+		if (Length == 0 || _items[0].CompareTo(value) <= 0)
+		{
+			return value;
+		}
+		T result = _items[0];
+		_items[0] = value;
+		HeapifyDown(0);
+		return result;
+	}
 	private void HeapifyUp(int index)
 	{
 		int parentIndex = (index - 1) / 2;
