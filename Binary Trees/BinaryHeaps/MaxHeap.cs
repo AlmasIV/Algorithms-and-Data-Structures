@@ -39,6 +39,17 @@ public class MaxHeap<T> : IEnumerable<T> where T : IComparable<T>
 		_items[Length++] = value;
 		HeapifyUp(Length - 1);
 	}
+	public T RemoveTopItem()
+	{
+		if (Length == 0)
+		{
+			throw new InvalidOperationException("The heap is empty.");
+		}
+		T result = _items[0];
+		_items[0] = _items[--Length];
+		HeapifyDown(0);
+		return result;
+	}
 	private void HeapifyUp(int index)
 	{
 		int parentIndex = (index - 1) / 2;
@@ -69,7 +80,8 @@ public class MaxHeap<T> : IEnumerable<T> where T : IComparable<T>
 				largestIndex = right;
 			}
 
-			if(largestIndex == index) {
+			if (largestIndex == index)
+			{
 				break;
 			}
 
