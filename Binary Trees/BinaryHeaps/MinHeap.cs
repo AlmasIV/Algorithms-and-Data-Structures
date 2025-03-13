@@ -55,7 +55,7 @@ public class MinHeap<T> : IEnumerable<T> where T : IComparable<T>
 	// Why? Because this is more efficient than calling Insert then RemoveTopItem.
 	public T InsertRemoveTopItem(T value)
 	{
-		if (Length == 0 || _items[0].CompareTo(value) <= 0)
+		if (Length == 0 || _items[0].CompareTo(value) >= 0)
 		{
 			return value;
 		}
