@@ -109,6 +109,7 @@ public class MaxHeap<T> : IEnumerable<T> where T : IComparable<T>
 		newSize = Math.Max(newSize, _defaultSize);
 		T[] newArray = new T[newSize];
 		Array.Copy(_items, newArray, Length);
+		_items = newArray;
 	}
 
 	public static bool IsMaxHeap(T[] binaryTree)
