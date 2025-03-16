@@ -30,6 +30,17 @@ public class MinHeap<T> : IEnumerable<T> where T : IComparable<T>
 		}
 		_items = new T[Math.Max(size, _defaultSize)];
 	}
+	public MinHeap(T[] inputs) : this(inputs is null ? 0 : inputs.Length)
+	{
+		ArgumentNullException.ThrowIfNull(inputs);
+		Array.Copy(inputs, _items, inputs.Length);
+		Length = inputs.Length;
+
+		for (int i = (Length - 2) / 2; i >= 0; i--)
+		{
+			HeapifyDown(i);
+		}
+	}
 	public void Insert(T value)
 	{
 		if (Length == _items.Length)
