@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Countingsort", "Countingsort.csproj", "{8CA91790-C35B-47C2-8BEC-FAD20649A507}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Countingsort.Tests", "..\Tests\Countingsort.Tests\Countingsort.Tests.csproj", "{BBCA18CC-4263-4FA1-BD0A-37EC0248DBF0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8CA91790-C35B-47C2-8BEC-FAD20649A507}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CA91790-C35B-47C2-8BEC-FAD20649A507}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CA91790-C35B-47C2-8BEC-FAD20649A507}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CA91790-C35B-47C2-8BEC-FAD20649A507}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBCA18CC-4263-4FA1-BD0A-37EC0248DBF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBCA18CC-4263-4FA1-BD0A-37EC0248DBF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBCA18CC-4263-4FA1-BD0A-37EC0248DBF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBCA18CC-4263-4FA1-BD0A-37EC0248DBF0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
