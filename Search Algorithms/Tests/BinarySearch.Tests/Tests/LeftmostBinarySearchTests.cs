@@ -7,7 +7,7 @@ public class BinarySearchTests
     [ExpectedException(typeof(ArgumentNullException))]
     public void Search_PassNull_ThrowsArgumentNullException()
     {
-        BinarySearch<int>.Search(null!, 1);
+        LeftmostBinarySearch<int>.Search(null!, 1);
     }
 
     [TestMethod]
@@ -17,7 +17,7 @@ public class BinarySearchTests
         int target = 0;
         int expected = 0;
 
-        int actual = BinarySearch<int>.Search(sortedArray, target);
+        int actual = LeftmostBinarySearch<int>.Search(sortedArray, target);
 
         Assert.AreEqual(expected, actual);
     }
@@ -29,7 +29,7 @@ public class BinarySearchTests
         int target = 1;
         int expected = -1;
 
-        int actual = BinarySearch<int>.Search(sortedArray, target);
+        int actual = LeftmostBinarySearch<int>.Search(sortedArray, target);
 
         Assert.AreEqual(expected, actual);
     }
@@ -41,7 +41,7 @@ public class BinarySearchTests
     {
         int expected = Array.IndexOf(sortedArray, target);
 
-        int actual = BinarySearch<int>.Search(sortedArray, target);
+        int actual = LeftmostBinarySearch<int>.Search(sortedArray, target);
 
         Assert.AreEqual(expected, actual);
     }
@@ -53,7 +53,7 @@ public class BinarySearchTests
     {
         int expected = Array.IndexOf(sortedArray, target);
 
-        int actual = BinarySearch<int>.Search(sortedArray, target);
+        int actual = LeftmostBinarySearch<int>.Search(sortedArray, target);
 
         Assert.AreEqual(expected, actual);
     }

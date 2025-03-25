@@ -1,6 +1,6 @@
 namespace BinarySearch;
 
-public static class BinarySearch<T> where T : IComparable<T>
+public static class LeftmostBinarySearch<T> where T : IComparable<T>
 {
 	public static int Search(T[] sortedArray, T target)
 	{
