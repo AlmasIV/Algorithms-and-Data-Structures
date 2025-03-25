@@ -1,7 +1,7 @@
 namespace BinarySearch.Tests;
 
 [TestClass]
-public class BinarySearchTests
+public class LeftmostBinarySearchTests
 {
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
