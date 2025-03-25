@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterpolationSearch", "InterpolationSearch.csproj", "{2B0F38CE-FEE8-479E-BD8E-30F1CD17ED18}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterpolationSearch.Tests", "..\Tests\InterpolationSearch.Tests\InterpolationSearch.Tests.csproj", "{3ED3779B-ED28-441F-BA0D-2B44F0BD2DCB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2B0F38CE-FEE8-479E-BD8E-30F1CD17ED18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B0F38CE-FEE8-479E-BD8E-30F1CD17ED18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B0F38CE-FEE8-479E-BD8E-30F1CD17ED18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B0F38CE-FEE8-479E-BD8E-30F1CD17ED18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3ED3779B-ED28-441F-BA0D-2B44F0BD2DCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3ED3779B-ED28-441F-BA0D-2B44F0BD2DCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3ED3779B-ED28-441F-BA0D-2B44F0BD2DCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3ED3779B-ED28-441F-BA0D-2B44F0BD2DCB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
