@@ -37,6 +37,7 @@ public class BinarySearchTests
     [TestMethod]
     [DataRow(new int[] { 0, 1, 2 }, 1)]
     [DataRow(new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 }, 9)]
+    [DataRow(new int[] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, 1)]
     public void Search_PassSortedArrayAndExistingTarget_FindsCorrectIndex(int[] sortedArray, int target)
     {
         int expected = Array.IndexOf(sortedArray, target);
