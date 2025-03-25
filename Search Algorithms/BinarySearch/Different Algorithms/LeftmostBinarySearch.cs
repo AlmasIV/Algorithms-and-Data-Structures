@@ -4,7 +4,9 @@ public static class LeftmostBinarySearch<T> where T : IComparable<T>
 {
 	public static int Search(T[] sortedArray, T target)
 	{
-		ArgumentNullException.ThrowIfNull(sortedArray);
+		ArgumentNullException.ThrowIfNull(sortedArray, nameof(sortedArray));
+		ArgumentNullException.ThrowIfNull(target, nameof(target));
+		
 		int left = 0;
 		int right = sortedArray.Length;
 		while (left < right)
