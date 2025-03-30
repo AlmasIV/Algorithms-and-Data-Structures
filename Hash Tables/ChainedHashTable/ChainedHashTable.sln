@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChainedHashTable", "ChainedHashTable.csproj", "{A9DAAD78-9752-4F4E-9D86-E97C35C804AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChainedHashTable.Tests", "..\Tests\ChainedHashTable.Tests\ChainedHashTable.Tests.csproj", "{EAC62207-FB7E-4AFB-9A6C-F77D7757BECE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A9DAAD78-9752-4F4E-9D86-E97C35C804AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9DAAD78-9752-4F4E-9D86-E97C35C804AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9DAAD78-9752-4F4E-9D86-E97C35C804AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9DAAD78-9752-4F4E-9D86-E97C35C804AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EAC62207-FB7E-4AFB-9A6C-F77D7757BECE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAC62207-FB7E-4AFB-9A6C-F77D7757BECE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EAC62207-FB7E-4AFB-9A6C-F77D7757BECE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EAC62207-FB7E-4AFB-9A6C-F77D7757BECE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
