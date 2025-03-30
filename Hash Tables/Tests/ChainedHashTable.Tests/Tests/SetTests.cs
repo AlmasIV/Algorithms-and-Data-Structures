@@ -19,7 +19,7 @@ public class SetTests
 	public void Set_SetItems_UpdatesCountAccordingly(int count)
 	{
 		KeyValuePair<int, string>[] keyValuePairs = GetRandomData(count);
-		ChainedHashTable<int, string> myHashTable = new ChainedHashTable<int, string>();
+		ChainedHashTable<int, string> myHashTable = new();
 		int expected = count;
 
 		foreach (KeyValuePair<int, string> keyValuePair in keyValuePairs)
@@ -38,7 +38,7 @@ public class SetTests
 	public void Set_SetItems_ItemsAreActuallySet(int count)
 	{
 		KeyValuePair<int, string>[] keyValuePairs = GetRandomData(count);
-		ChainedHashTable<int, string> myHashTable = new ChainedHashTable<int, string>();
+		ChainedHashTable<int, string> myHashTable = new();
 		bool expected = true;
 
 		foreach (KeyValuePair<int, string> keyValuePair in keyValuePairs)
@@ -50,6 +50,21 @@ public class SetTests
 		Assert.AreEqual(expected, actual);
 	}
 
+	[TestMethod]
+	public void Set_PassDuplicateKey_ItemRewritten()
+	{
+		ChainedHashTable<int, string> myHashTable = new();
+		KeyValuePair<int, string> keyValuePair1 = new(1, "Item 1");
+		KeyValuePair<int, string> keyValuePair2 = new(1, "Rewritten");
+		string expected = keyValuePair2.Value;
+
+		myHashTable.Set(keyValuePair1.Key, keyValuePair1.Value);
+		myHashTable.Set(keyValuePair2.Key, keyValuePair2.Value);
+		string actual = myHashTable.ToArray().First().Value;
+
+		Assert.AreEqual(expected, actual);
+	}
+
 	private KeyValuePair<int, string>[] GetRandomData(int count)
 	{
 		Random random = new();
@@ -57,7 +72,7 @@ public class SetTests
 		for (int i = 0; i < count; i++)
 		{
 			int key = random.Next();
-			KeyValuePair<int, string> keyValuePair = new KeyValuePair<int, string>(key, $"Test Number {key}.");
+			KeyValuePair<int, string> keyValuePair = new(key, $"Test Number {key}.");
 			if (!keyValuePairs.Any(pair => pair.Key == key))
 			{
 				keyValuePairs[i] = keyValuePair;
