@@ -45,7 +45,7 @@ public class SetTests
 		{
 			myHashTable.Set(keyValuePair.Key, keyValuePair.Value);
 		}
-		bool actual = ContainsIdentitcalItems(keyValuePairs, myHashTable.ToArray());
+		bool actual = ContainsIdenticalItems(keyValuePairs, myHashTable.ToArray());
 
 		Assert.AreEqual(expected, actual);
 	}
@@ -66,7 +66,7 @@ public class SetTests
 		return keyValuePairs;
 	}
 
-	private bool ContainsIdentitcalItems(KeyValuePair<int, string>[] keyValuePairs1, KeyValuePair<int, string>[] keyValuePairs2)
+	private bool ContainsIdenticalItems(KeyValuePair<int, string>[] keyValuePairs1, KeyValuePair<int, string>[] keyValuePairs2)
 	{
 		if (keyValuePairs1.Length != keyValuePairs2.Length)
 		{
