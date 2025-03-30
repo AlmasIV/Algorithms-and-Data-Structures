@@ -4,8 +4,8 @@ namespace ChainedHashTable;
 /*
 	Quick Summary:
 		1) Not designed for multi-threaded environment.
-		2) Maintains sorted order for keys. To improve searching.
-		3) Replaces item references completly if the keys are the same. Although the value reassignment is acceptable too.
+		2) Maintains sorted order for keys with the same hash. To improve searching.
+		3) Replaces item references completely if the keys are the same. Although the value reassignment would be acceptable too.
 		4) Doesn't accept 'null' as values.
 		5) Doesn't have error handling.
 */
