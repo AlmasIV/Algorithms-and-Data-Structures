@@ -9,30 +9,30 @@ namespace ChainedHashTable;
 		4) Doesn't accept 'null' as values.
 		5) Doesn't have error handling.
 */
-public class ChainedHashTable<K, T> : IEnumerable<T> where K : IComparable<K>
+public class ChainedHashTable<K, V> : IEnumerable<KeyValuePair<K, V>> where K : IComparable<K>
 {
 	public int Count { get; private set; } = 0;
 	private const int _defaultSize = 16;
-	private LinkedList<KeyValuePair<K, T>>[] _buckets = new LinkedList<KeyValuePair<K, T>>[_defaultSize];
-	public void Set(K key, T item)
+	private LinkedList<KeyValuePair<K, V>>[] _buckets = new LinkedList<KeyValuePair<K, V>>[_defaultSize];
+	public void Set(K key, V item)
 	{
 		ArgumentNullException.ThrowIfNull(key);
 		ArgumentNullException.ThrowIfNull(item);
 
 		int hashedKey = _HashKey(key);
-		KeyValuePair<K, T> itemToBeInserted = new KeyValuePair<K, T>(key, item);
+		KeyValuePair<K, V> itemToBeInserted = new KeyValuePair<K, V>(key, item);
 
-		LinkedList<KeyValuePair<K, T>>? linkedListAtIndex = _buckets[hashedKey];
+		LinkedList<KeyValuePair<K, V>>? linkedListAtIndex = _buckets[hashedKey];
 
 		if (linkedListAtIndex is null)
 		{
-			linkedListAtIndex = new LinkedList<KeyValuePair<K, T>>();
+			linkedListAtIndex = new LinkedList<KeyValuePair<K, V>>();
 			_buckets[hashedKey] = linkedListAtIndex;
 			linkedListAtIndex.AddFirst(itemToBeInserted);
 		}
 		else
 		{
-			LinkedListNode<KeyValuePair<K, T>>? tempNode = linkedListAtIndex.First;
+			LinkedListNode<KeyValuePair<K, V>>? tempNode = linkedListAtIndex.First;
 			while (tempNode is not null && tempNode.Value.Key.CompareTo(itemToBeInserted.Key) < 0)
 			{
 				tempNode = tempNode.Next;
@@ -59,14 +59,14 @@ public class ChainedHashTable<K, T> : IEnumerable<T> where K : IComparable<K>
 		ArgumentNullException.ThrowIfNull(key);
 		return (key.GetHashCode() & 0x7FFFFFFF) % _buckets.Length;
 	}
-	public IEnumerator<T> GetEnumerator()
+	public IEnumerator<KeyValuePair<K, V>> GetEnumerator()
 	{
-		foreach (LinkedList<KeyValuePair<K, T>> bucket in _buckets)
+		foreach (LinkedList<KeyValuePair<K, V>> bucket in _buckets)
 		{
-			LinkedListNode<KeyValuePair<K, T>>? tempNode = bucket?.First;
+			LinkedListNode<KeyValuePair<K, V>>? tempNode = bucket?.First;
 			while (tempNode is not null)
 			{
-				yield return tempNode.Value.Value;
+				yield return tempNode.Value;
 				tempNode = tempNode.Next;
 			}
 		}
