@@ -14,6 +14,10 @@ public class ChainedHashTable<K, V> : IEnumerable<KeyValuePair<K, V>> where K : 
 	public int Count { get; private set; } = 0;
 	private const int _defaultSize = 16;
 	private LinkedList<KeyValuePair<K, V>>[] _buckets = new LinkedList<KeyValuePair<K, V>>[_defaultSize];
+	public void Set(KeyValuePair<K, V> keyValuePair)
+	{
+		Set(keyValuePair.Key, keyValuePair.Value);
+	}
 	public void Set(K key, V item)
 	{
 		ArgumentNullException.ThrowIfNull(key);
