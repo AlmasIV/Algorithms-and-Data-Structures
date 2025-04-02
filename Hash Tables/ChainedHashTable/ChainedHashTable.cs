@@ -61,6 +61,36 @@ public class ChainedHashTable<K, V> : IEnumerable<KeyValuePair<K, V>> where K : 
 		}
 		Count++;
 	}
+	public bool TryGetValue(K key, out V? value)
+	{
+		ArgumentNullException.ThrowIfNull(key);
+
+		int hashedKey = _HashKey(key);
+		LinkedList<KeyValuePair<K, V>>? linkedListAtIndex = _buckets[hashedKey];
+		value = default;
+		bool found = false;
+		if (linkedListAtIndex is not null)
+		{
+			LinkedListNode<KeyValuePair<K, V>>? tempNode = linkedListAtIndex.First;
+			while (tempNode is not null)
+			{
+				if (tempNode.Value.Key.CompareTo(key) == 0)
+				{
+					value = tempNode.Value.Value;
+					found = true;
+					break;
+				}
+
+				if (tempNode.Value.Key.CompareTo(key) > 0)
+				{
+					break;
+				}
+
+				tempNode = tempNode.Next;
+			}
+		}
+		return found;
+	}
 	private int _HashKey(K key)
 	{
 		ArgumentNullException.ThrowIfNull(key);

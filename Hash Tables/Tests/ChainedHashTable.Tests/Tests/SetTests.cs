@@ -18,7 +18,7 @@ public class SetTests
 	[DataRow(90)]
 	public void Set_SetItems_UpdatesCountAccordingly(int count)
 	{
-		KeyValuePair<int, string>[] keyValuePairs = GetRandomData(count);
+		KeyValuePair<int, string>[] keyValuePairs = SampleGenerator.GetRandomData(count);
 		ChainedHashTable<int, string> myHashTable = new();
 		int expected = count;
 
@@ -37,7 +37,7 @@ public class SetTests
 	[DataRow(90)]
 	public void Set_SetItems_ItemsAreActuallySet(int count)
 	{
-		KeyValuePair<int, string>[] keyValuePairs = GetRandomData(count);
+		KeyValuePair<int, string>[] keyValuePairs = SampleGenerator.GetRandomData(count);
 		ChainedHashTable<int, string> myHashTable = new();
 		bool expected = true;
 
@@ -63,22 +63,6 @@ public class SetTests
 		string actual = myHashTable.ToArray().First().Value;
 
 		Assert.AreEqual(expected, actual);
-	}
-
-	private KeyValuePair<int, string>[] GetRandomData(int count)
-	{
-		Random random = new();
-		KeyValuePair<int, string>[] keyValuePairs = new KeyValuePair<int, string>[count];
-		for (int i = 0; i < count; i++)
-		{
-			int key = random.Next();
-			KeyValuePair<int, string> keyValuePair = new(key, $"Test Number {key}.");
-			if (!keyValuePairs.Any(pair => pair.Key == key))
-			{
-				keyValuePairs[i] = keyValuePair;
-			}
-		}
-		return keyValuePairs;
 	}
 
 	private bool ContainsIdenticalItems(KeyValuePair<int, string>[] keyValuePairs1, KeyValuePair<int, string>[] keyValuePairs2)
