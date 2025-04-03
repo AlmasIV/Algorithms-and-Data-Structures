@@ -11,9 +11,22 @@ namespace ChainedHashTable;
 */
 public class ChainedHashTable<K, V> : IEnumerable<KeyValuePair<K, V>> where K : IComparable<K>
 {
-	public int Count { get; private set; } = 0;
+	private int _count = 0;
 	private const int _defaultBucketSize = 16;
+	private double _loadFactor = 0;
 	private LinkedList<KeyValuePair<K, V>>[] _buckets;
+	public int Count
+	{
+		get
+		{
+			return _count;
+		}
+		private set
+		{
+			_count = value;
+			_loadFactor = _count / _buckets.Length;
+		}
+	}
 	public ChainedHashTable()
 	{
 		_buckets = new LinkedList<KeyValuePair<K, V>>[_defaultBucketSize];
