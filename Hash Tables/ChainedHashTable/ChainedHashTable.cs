@@ -24,7 +24,7 @@ public class ChainedHashTable<K, V> : IEnumerable<KeyValuePair<K, V>> where K : 
 		private set
 		{
 			_count = value;
-			_loadFactor = _count / _buckets.Length;
+			_loadFactor = (double)_count / _buckets.Length;
 		}
 	}
 	public ChainedHashTable()
@@ -140,6 +140,28 @@ public class ChainedHashTable<K, V> : IEnumerable<KeyValuePair<K, V>> where K : 
 		}
 
 		return doesExist;
+	}
+	private void _Resize(int newBucketSize)
+	{
+		newBucketSize = Math.Max(newBucketSize, _defaultBucketSize);
+		if (newBucketSize != _buckets.Length)
+		{
+			LinkedList<KeyValuePair<K, V>>[] oldBuckets = _buckets;
+			_buckets = new LinkedList<KeyValuePair<K, V>>[newBucketSize];
+			Count = 0;
+			foreach (LinkedList<KeyValuePair<K, V>>? linkedList in oldBuckets)
+			{
+				if (linkedList is not null)
+				{
+					LinkedListNode<KeyValuePair<K, V>>? tempNode = linkedList.First;
+					while (tempNode is not null)
+					{
+						Set(tempNode.Value);
+						tempNode = tempNode.Next;
+					}
+				}
+			}
+		}
 	}
 	private int _HashKey(K key)
 	{
