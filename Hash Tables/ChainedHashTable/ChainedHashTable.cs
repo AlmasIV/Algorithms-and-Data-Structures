@@ -12,8 +12,16 @@ namespace ChainedHashTable;
 public class ChainedHashTable<K, V> : IEnumerable<KeyValuePair<K, V>> where K : IComparable<K>
 {
 	public int Count { get; private set; } = 0;
-	private const int _defaultSize = 16;
-	private LinkedList<KeyValuePair<K, V>>[] _buckets = new LinkedList<KeyValuePair<K, V>>[_defaultSize];
+	private const int _defaultBucketSize = 16;
+	private LinkedList<KeyValuePair<K, V>>[] _buckets;
+	public ChainedHashTable()
+	{
+		_buckets = new LinkedList<KeyValuePair<K, V>>[_defaultBucketSize];
+	}
+	public ChainedHashTable(int bucketSize)
+	{
+		_buckets = new LinkedList<KeyValuePair<K, V>>[Math.Max(bucketSize, _defaultBucketSize)];
+	}
 	public void Set(K key, V value)
 	{
 		ArgumentNullException.ThrowIfNull(key);
@@ -113,7 +121,7 @@ public class ChainedHashTable<K, V> : IEnumerable<KeyValuePair<K, V>> where K : 
 				{
 					break;
 				}
-				
+
 				tempNode = tempNode.Next;
 			}
 		}
