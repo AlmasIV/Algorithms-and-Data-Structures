@@ -45,7 +45,7 @@ public abstract class HashTableAbstract<K, V> : IEnumerable<KeyValuePair<K, V?>>
 	}
 	private protected int _HashKey(K key)
 	{
-		ArgumentNullException.ThrowIfNull(key);
+		ArgumentNullException.ThrowIfNull(key, nameof(key));
 		// 1) Get the raw 32‑bit hash code
 		int h = key.GetHashCode();
 

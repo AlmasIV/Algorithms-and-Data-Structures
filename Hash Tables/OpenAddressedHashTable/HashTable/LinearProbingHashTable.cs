@@ -57,7 +57,7 @@ public class LinearProbingHashTable<K, V> : HashTableAbstract<K, V> where K : IC
 
 	public override bool ContainsByKey(K key)
 	{
-		ArgumentNullException.ThrowIfNull(key);
+		ArgumentNullException.ThrowIfNull(key, nameof(key));
 
 		int hashedKey = _HashKey(key);
 		KeyValuePair<K, (bool, V?)>? probe = _buckets[hashedKey];
@@ -72,7 +72,7 @@ public class LinearProbingHashTable<K, V> : HashTableAbstract<K, V> where K : IC
 
 	public override bool Remove(K key)
 	{
-		ArgumentNullException.ThrowIfNull(key);
+		ArgumentNullException.ThrowIfNull(key, nameof(key));
 		bool isRemoved = false;
 		int hashedKey = _HashKey(key);
 		int index = hashedKey;
@@ -81,8 +81,10 @@ public class LinearProbingHashTable<K, V> : HashTableAbstract<K, V> where K : IC
 		{
 			if (probe.HasValue)
 			{
-				if(probe.Value.Key.CompareTo(key) == 0) {
-					if(probe.Value.Value.Item1 is false) {
+				if (probe.Value.Key.CompareTo(key) == 0)
+				{
+					if (probe.Value.Value.Item1 is false)
+					{
 						_buckets[index] = new KeyValuePair<K, (bool, V?)>(key, (true, default));
 						isRemoved = true;
 					}
@@ -102,6 +104,31 @@ public class LinearProbingHashTable<K, V> : HashTableAbstract<K, V> where K : IC
 
 	public override bool TryGetValue(K key, out V? value)
 	{
-		throw new NotImplementedException();
+		ArgumentNullException.ThrowIfNull(key, nameof(key));
+		bool doesExist = false;
+		value = default;
+		int hashedKey = _HashKey(key);
+		int index = hashedKey;
+		KeyValuePair<K, (bool, V?)>? probe = _buckets[index];
+		do
+		{
+			if (probe.HasValue)
+			{
+				if(probe.Value.Key.CompareTo(key) == 0) {
+					if(probe.Value.Value.Item1 is false) {
+						value = probe.Value.Value.Item2;
+						doesExist = true;
+					}
+					break;
+				}
+				index = (index + 1) & (_buckets.Length - 1);
+				probe = _buckets[index];
+			}
+			else
+			{
+				break;
+			}
+		} while (index != hashedKey);
+		return doesExist;
 	}
 }
