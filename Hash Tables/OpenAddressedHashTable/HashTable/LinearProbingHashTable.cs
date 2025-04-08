@@ -58,7 +58,15 @@ public class LinearProbingHashTable<K, V> : HashTableAbstract<K, V> where K : IC
 
 	public override bool ContainsByKey(K key)
 	{
-		throw new NotImplementedException();
+		int hashedKey = _HashKey(key);
+		KeyValuePair<K, (bool, V)>? probe = _buckets[hashedKey];
+		while (probe.HasValue && (probe.Value.Value.Item1 || probe.Value.Key.CompareTo(key) != 0))
+		{
+			hashedKey = (hashedKey + 1) & (_buckets.Length - 1);
+			probe = _buckets[hashedKey];
+		}
+
+		return probe.HasValue && probe.Value.Value.Item1 is false;
 	}
 
 	public override bool Remove(K key)
