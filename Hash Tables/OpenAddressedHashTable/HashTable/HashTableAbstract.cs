@@ -1,14 +1,14 @@
 using System.Collections;
 
 namespace OpenAddressedHashTable;
-public abstract class HashTableAbstract<K, V> : IEnumerable<KeyValuePair<K, V>> where K : IComparable<K>
+public abstract class HashTableAbstract<K, V> : IEnumerable<KeyValuePair<K, V?>> where K : IComparable<K>
 {
 	private protected double _loadFactor => (double)Count / _buckets.Length;
 	private protected const int _defaultBucketSize = 64;
-	private protected KeyValuePair<K, (bool, V)>?[] _buckets;
+	private protected KeyValuePair<K, (bool, V?)>?[] _buckets;
 	public HashTableAbstract()
 	{
-		_buckets = new KeyValuePair<K, (bool, V)>?[_defaultBucketSize];
+		_buckets = new KeyValuePair<K, (bool, V?)>?[_defaultBucketSize];
 	}
 	public HashTableAbstract(int initialBucketSize)
 	{
@@ -17,11 +17,11 @@ public abstract class HashTableAbstract<K, V> : IEnumerable<KeyValuePair<K, V>> 
 			throw new ArgumentException("The size cannot be negative.", nameof(initialBucketSize));
 		}
 		initialBucketSize = Math.Max(_defaultBucketSize, initialBucketSize);
-		_buckets = new KeyValuePair<K, (bool, V)>?[initialBucketSize];
+		_buckets = new KeyValuePair<K, (bool, V?)>?[initialBucketSize];
 	}
 	public int Count { get; private protected set; }
-	public abstract void Add(K key, V value);
-	public abstract void Add(KeyValuePair<K, V> item);
+	public abstract void Add(K key, V? value);
+	public abstract void Add(KeyValuePair<K, V?> item);
 	public abstract bool Remove(K key);
 	public abstract bool ContainsByKey(K key);
 	public abstract bool TryGetValue(K key, out V? value);
@@ -31,10 +31,10 @@ public abstract class HashTableAbstract<K, V> : IEnumerable<KeyValuePair<K, V>> 
 		newBucketSize = Math.Max(newBucketSize, _defaultBucketSize);
 		if (newBucketSize != _buckets.Length)
 		{
-			KeyValuePair<K, (bool, V)>?[] oldBuckets = _buckets;
-			_buckets = new KeyValuePair<K, (bool, V)>?[newBucketSize];
+			KeyValuePair<K, (bool, V?)>?[] oldBuckets = _buckets;
+			_buckets = new KeyValuePair<K, (bool, V?)>?[newBucketSize];
 			Count = 0;
-			foreach (KeyValuePair<K, (bool, V)>? item in oldBuckets)
+			foreach (KeyValuePair<K, (bool, V?)>? item in oldBuckets)
 			{
 				if (item.HasValue && item.Value.Value.Item1 is false)
 				{
@@ -68,13 +68,13 @@ public abstract class HashTableAbstract<K, V> : IEnumerable<KeyValuePair<K, V>> 
 		return (h & 0x7FFFFFFF) & (_buckets.Length - 1);
 	}
 
-	public virtual IEnumerator<KeyValuePair<K, V>> GetEnumerator()
+	public virtual IEnumerator<KeyValuePair<K, V?>> GetEnumerator()
 	{
-		foreach (KeyValuePair<K, (bool, V)>? item in _buckets)
+		foreach (KeyValuePair<K, (bool, V?)>? item in _buckets)
 		{
 			if (item.HasValue && item.Value.Value.Item1 is false)
 			{
-				yield return new KeyValuePair<K, V>(item.Value.Key, item.Value.Value.Item2);
+				yield return new KeyValuePair<K, V?>(item.Value.Key, item.Value.Value.Item2);
 			}
 		}
 	}
