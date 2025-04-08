@@ -36,11 +36,9 @@ public abstract class HashTableAbstract<K, V> : IEnumerable<KeyValuePair<K, V>> 
 			Count = 0;
 			foreach (KeyValuePair<K, (bool, V)>? item in oldBuckets)
 			{
-				if (item.HasValue)
+				if (item.HasValue && item.Value.Value.Item1 is false)
 				{
-					int hashedKey = _HashKey(item.Value.Key);
 					Add(item.Value.Key, item.Value.Value.Item2);
-					
 				}
 			}
 		}
