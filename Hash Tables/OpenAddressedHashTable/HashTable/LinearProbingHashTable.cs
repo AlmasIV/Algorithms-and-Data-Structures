@@ -51,6 +51,10 @@ public class LinearProbingHashTable<K, V> : HashTableAbstract<K, V> where K : IC
 
 	public override void Clear()
 	{
+		if (Count == 0)
+		{
+			throw new InvalidOperationException("The hash-table is empty.");
+		}
 		Count = 0;
 		_buckets = new KeyValuePair<K, (bool, V?)>?[_defaultBucketSize];
 	}
