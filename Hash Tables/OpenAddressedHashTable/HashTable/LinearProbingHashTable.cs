@@ -114,8 +114,10 @@ public class LinearProbingHashTable<K, V> : HashTableAbstract<K, V> where K : IC
 		{
 			if (probe.HasValue)
 			{
-				if(probe.Value.Key.CompareTo(key) == 0) {
-					if(probe.Value.Value.Item1 is false) {
+				if (probe.Value.Key.CompareTo(key) == 0)
+				{
+					if (probe.Value.Value.Item1 is false)
+					{
 						value = probe.Value.Value.Item2;
 						doesExist = true;
 					}
