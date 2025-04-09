@@ -62,6 +62,10 @@ public class LinearProbingHashTable<K, V> : HashTableAbstract<K, V> where K : IC
 	public override bool ContainsByKey(K key)
 	{
 		ArgumentNullException.ThrowIfNull(key, nameof(key));
+		if (Count == 0)
+		{
+			throw new InvalidOperationException("The hash-table is empty.");
+		}
 
 		int hashedKey = _HashKey(key);
 		KeyValuePair<K, (bool, V?)>? probe = _buckets[hashedKey];
@@ -77,6 +81,10 @@ public class LinearProbingHashTable<K, V> : HashTableAbstract<K, V> where K : IC
 	public override bool Remove(K key)
 	{
 		ArgumentNullException.ThrowIfNull(key, nameof(key));
+		if (Count == 0)
+		{
+			throw new InvalidOperationException("The hash-table is empty.");
+		}
 		bool isRemoved = false;
 		int hashedKey = _HashKey(key);
 		int index = hashedKey;
@@ -109,6 +117,10 @@ public class LinearProbingHashTable<K, V> : HashTableAbstract<K, V> where K : IC
 	public override bool TryGetValue(K key, out V? value)
 	{
 		ArgumentNullException.ThrowIfNull(key, nameof(key));
+		if (Count == 0)
+		{
+			throw new InvalidOperationException("The hash-table is empty.");
+		}
 		bool doesExist = false;
 		value = default;
 		int hashedKey = _HashKey(key);

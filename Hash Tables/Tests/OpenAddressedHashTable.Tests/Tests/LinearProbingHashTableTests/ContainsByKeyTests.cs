@@ -4,14 +4,13 @@ namespace OpenAddressedHashTable.LinearProbingHashTable.Tests;
 public class ContainsByKeyTests
 {
 	[TestMethod]
-	public void ContainsByKey_PassKeyOnEmptyHashTable_ReturnsFalse()
+	[ExpectedException(typeof(InvalidOperationException))]
+	public void ContainsByKey_PassKeyOnEmptyHashTable_ThrowsInvalidOperationException()
 	{
 		LinearProbingHashTable<int, string> myHashTable = new();
 		bool expected = false;
 
 		bool actual = myHashTable.ContainsByKey(0);
-
-		Assert.AreEqual(expected, actual);
 	}
 
 	[TestMethod]
