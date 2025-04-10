@@ -26,6 +26,7 @@ public abstract class HashTableAbstract<K, V> : IEnumerable<KeyValuePair<K, V?>>
 	public abstract bool ContainsByKey(K key);
 	public abstract bool TryGetValue(K key, out V? value);
 	public abstract void Clear();
+	private protected abstract int GetIndexByKey(K key);
 	private protected void _Resize(int newBucketSize)
 	{
 		newBucketSize = Math.Max(newBucketSize, _defaultBucketSize);

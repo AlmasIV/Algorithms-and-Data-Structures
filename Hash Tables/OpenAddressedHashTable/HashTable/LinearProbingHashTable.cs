@@ -149,4 +149,37 @@ public class LinearProbingHashTable<K, V> : HashTableAbstract<K, V> where K : IC
 		} while (index != hashedKey);
 		return doesExist;
 	}
+	private protected override int GetIndexByKey(K key)
+	{
+		ArgumentNullException.ThrowIfNull(key);
+		if (Count == 0)
+		{
+			throw new InvalidOperationException("The hash-table is empty.");
+		}
+		int currentIndex = _HashKey(key);
+		int attemptCount = 0, limit = _buckets.Length;
+		do
+		{
+			KeyValuePair<K, (bool, V?)>? probe = _buckets[currentIndex];
+
+			if (probe.HasValue is false)
+			{
+				break;
+			}
+
+			if (probe.Value.Key.CompareTo(key) == 0)
+			{
+				if (probe.Value.Value.Item1 is false)
+				{
+					return currentIndex;
+				}
+				break;
+			}
+
+			currentIndex = (currentIndex + 1) & (_buckets.Length - 1);
+			attemptCount++;
+		} while (attemptCount < limit);
+
+		return -1;
+	}
 }

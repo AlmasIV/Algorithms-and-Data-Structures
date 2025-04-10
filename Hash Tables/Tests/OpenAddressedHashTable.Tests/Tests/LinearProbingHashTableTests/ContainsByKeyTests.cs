@@ -8,7 +8,6 @@ public class ContainsByKeyTests
 	public void ContainsByKey_PassKeyOnEmptyHashTable_ThrowsInvalidOperationException()
 	{
 		LinearProbingHashTable<int, string> myHashTable = new();
-		bool expected = false;
 
 		bool actual = myHashTable.ContainsByKey(0);
 	}
