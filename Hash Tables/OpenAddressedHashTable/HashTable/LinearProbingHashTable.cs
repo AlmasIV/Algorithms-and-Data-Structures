@@ -67,15 +67,15 @@ public class LinearProbingHashTable<K, V> : HashTableAbstract<K, V> where K : IC
 			throw new InvalidOperationException("The hash-table is empty.");
 		}
 
-		int hashedKey = _HashKey(key);
-		KeyValuePair<K, (bool, V?)>? probe = _buckets[hashedKey];
-		while (probe.HasValue && (probe.Value.Value.Item1 || probe.Value.Key.CompareTo(key) != 0))
+		bool doesExist = false;
+
+		int index = GetIndexByKey(key);
+		if (index > -1)
 		{
-			hashedKey = (hashedKey + 1) & (_buckets.Length - 1);
-			probe = _buckets[hashedKey];
+			doesExist = true;
 		}
 
-		return probe.HasValue && probe.Value.Value.Item1 is false;
+		return doesExist;
 	}
 
 	public override bool Remove(K key)
@@ -86,30 +86,13 @@ public class LinearProbingHashTable<K, V> : HashTableAbstract<K, V> where K : IC
 			throw new InvalidOperationException("The hash-table is empty.");
 		}
 		bool isRemoved = false;
-		int hashedKey = _HashKey(key);
-		int index = hashedKey;
-		KeyValuePair<K, (bool, V?)>? probe = _buckets[index];
-		do
+
+		int index = GetIndexByKey(key);
+		if (index > -1)
 		{
-			if (probe.HasValue)
-			{
-				if (probe.Value.Key.CompareTo(key) == 0)
-				{
-					if (probe.Value.Value.Item1 is false)
-					{
-						_buckets[index] = new KeyValuePair<K, (bool, V?)>(key, (true, default));
-						isRemoved = true;
-					}
-					break;
-				}
-				index = (index + 1) & (_buckets.Length - 1);
-				probe = _buckets[index];
-			}
-			else
-			{
-				break;
-			}
-		} while (index != hashedKey);
+			_buckets[index] = new KeyValuePair<K, (bool, V?)>(key, (true, default));
+			isRemoved = true;
+		}
 
 		return isRemoved;
 	}
@@ -123,30 +106,13 @@ public class LinearProbingHashTable<K, V> : HashTableAbstract<K, V> where K : IC
 		}
 		bool doesExist = false;
 		value = default;
-		int hashedKey = _HashKey(key);
-		int index = hashedKey;
-		KeyValuePair<K, (bool, V?)>? probe = _buckets[index];
-		do
+
+		int index = GetIndexByKey(key);
+		if (index > -1)
 		{
-			if (probe.HasValue)
-			{
-				if (probe.Value.Key.CompareTo(key) == 0)
-				{
-					if (probe.Value.Value.Item1 is false)
-					{
-						value = probe.Value.Value.Item2;
-						doesExist = true;
-					}
-					break;
-				}
-				index = (index + 1) & (_buckets.Length - 1);
-				probe = _buckets[index];
-			}
-			else
-			{
-				break;
-			}
-		} while (index != hashedKey);
+			value = _buckets[index]!.Value.Value.Item2;
+			doesExist = true;
+		}
 		return doesExist;
 	}
 	private protected override int GetIndexByKey(K key)
