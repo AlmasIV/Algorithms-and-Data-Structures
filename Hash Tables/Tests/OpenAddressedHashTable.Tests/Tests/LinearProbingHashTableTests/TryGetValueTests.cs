@@ -4,12 +4,14 @@ namespace OpenAddressedHashTable.LinearProbingHashTable.Tests;
 public class TryGetValueTests
 {
 	[TestMethod]
-	[ExpectedException(typeof(InvalidOperationException))]
-	public void TryGetValue_TryOnEmptyHashTable_ThrowsInvalidOperationException()
+	public void TryGetValue_TryOnEmptyHashTable_ReturnsFalse()
 	{
 		LinearProbingHashTable<int, string> myHashTable = new();
+		bool expected = false;
 
-		myHashTable.TryGetValue(0, out string? value);
+		bool actual = myHashTable.TryGetValue(0, out string? value);
+
+		Assert.AreEqual(expected, actual);
 	}
 
 	[TestMethod]

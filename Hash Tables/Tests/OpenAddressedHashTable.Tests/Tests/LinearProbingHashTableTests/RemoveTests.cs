@@ -4,12 +4,14 @@ namespace OpenAddressedHashTable.LinearProbingHashTable.Tests;
 public class RemoveTests
 {
 	[TestMethod]
-	[ExpectedException(typeof(InvalidOperationException))]
-	public void Remove_RemoveOnEmptyHashTable_ThrowsInvalidOperationException()
+	public void Remove_RemoveOnEmptyHashTable_ReturnsFalse()
 	{
 		LinearProbingHashTable<int, string> myHashTable = new();
+		bool expected = false;
 
-		myHashTable.Remove(1);
+		bool actual = myHashTable.Remove(1);
+
+		Assert.AreEqual(expected, actual);
 	}
 
 	[TestMethod]
@@ -58,6 +60,42 @@ public class RemoveTests
 
 		myHashTable.Remove(existingKey);
 		bool actual = myHashTable.ToArray().Any(kvp => kvp.Key == existingKey);
+
+		Assert.AreEqual(expected, actual);
+	}
+
+	[TestMethod]
+	[DataRow(0, 1, 2, 3, 4, 5)]
+	public void Remove_RemoveNonExistingItem_CountIsSame(int nonExistentKey, params int[] keys)
+	{
+		LinearProbingHashTable<int, string> myHashTable = new();
+		int expected = keys.Length;
+		string sample = "Hello World!";
+		foreach (int key in keys)
+		{
+			myHashTable.Add(key, sample);
+		}
+
+		myHashTable.Remove(nonExistentKey);
+		int actual = myHashTable.Count;
+
+		Assert.AreEqual(expected, actual);
+	}
+
+	[TestMethod]
+	[DataRow(1, 1, 2, 3, 4, 5)]
+	public void Remove_RemoveExistingItem_DecrementsCount(int existingKey, params int[] keys)
+	{
+		LinearProbingHashTable<int, string> myHashTable = new();
+		int expected = keys.Length - 1;
+		string sample = "Hello World!";
+		foreach (int key in keys)
+		{
+			myHashTable.Add(key, sample);
+		}
+
+		myHashTable.Remove(existingKey);
+		int actual = myHashTable.Count;
 
 		Assert.AreEqual(expected, actual);
 	}

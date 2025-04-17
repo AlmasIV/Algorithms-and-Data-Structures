@@ -51,101 +51,85 @@ public class LinearProbingHashTable<K, V> : HashTableAbstract<K, V> where K : IC
 
 	public override void Clear()
 	{
-		if (Count == 0)
-		{
-			throw new InvalidOperationException("The hash-table is empty.");
+		if(Count > 0) {
+			Count = 0;
+			_buckets = new KeyValuePair<K, (bool, V?)>?[_defaultBucketSize];
 		}
-		Count = 0;
-		_buckets = new KeyValuePair<K, (bool, V?)>?[_defaultBucketSize];
 	}
 
 	public override bool ContainsByKey(K key)
 	{
 		ArgumentNullException.ThrowIfNull(key, nameof(key));
-		if (Count == 0)
-		{
-			throw new InvalidOperationException("The hash-table is empty.");
-		}
-
 		bool doesExist = false;
-
-		int index = GetIndexByKey(key);
-		if (index > -1)
-		{
-			doesExist = true;
+		if(Count > 0) {
+			int index = GetIndexByKey(key);
+			if (index > -1)
+			{
+				doesExist = true;
+			}
 		}
-
 		return doesExist;
 	}
 
 	public override bool Remove(K key)
 	{
 		ArgumentNullException.ThrowIfNull(key, nameof(key));
-		if (Count == 0)
-		{
-			throw new InvalidOperationException("The hash-table is empty.");
-		}
 		bool isRemoved = false;
-
-		int index = GetIndexByKey(key);
-		if (index > -1)
-		{
-			_buckets[index] = new KeyValuePair<K, (bool, V?)>(key, (true, default));
-			isRemoved = true;
+		if(Count > 0) {
+			int index = GetIndexByKey(key);
+			if (index > -1)
+			{
+				_buckets[index] = new KeyValuePair<K, (bool, V?)>(key, (true, default));
+				isRemoved = true;
+				Count--;
+			}
 		}
-
 		return isRemoved;
 	}
 
 	public override bool TryGetValue(K key, out V? value)
 	{
 		ArgumentNullException.ThrowIfNull(key, nameof(key));
-		if (Count == 0)
-		{
-			throw new InvalidOperationException("The hash-table is empty.");
-		}
 		bool doesExist = false;
 		value = default;
-
-		int index = GetIndexByKey(key);
-		if (index > -1)
-		{
-			value = _buckets[index]!.Value.Value.Item2;
-			doesExist = true;
+		if(Count > 0) {
+			int index = GetIndexByKey(key);
+			if (index > -1)
+			{
+				value = _buckets[index]!.Value.Value.Item2;
+				doesExist = true;
+			}
 		}
 		return doesExist;
 	}
 	private protected override int GetIndexByKey(K key)
 	{
 		ArgumentNullException.ThrowIfNull(key);
-		if (Count == 0)
-		{
-			throw new InvalidOperationException("The hash-table is empty.");
-		}
-		int currentIndex = _HashKey(key);
-		int attemptCount = 0, limit = _buckets.Length;
-		do
-		{
-			KeyValuePair<K, (bool, V?)>? probe = _buckets[currentIndex];
-
-			if (probe.HasValue is false)
+		if(Count > 0) {
+			int currentIndex = _HashKey(key);
+			int attemptCount = 0, limit = _buckets.Length;
+			do
 			{
-				break;
-			}
+				KeyValuePair<K, (bool, V?)>? probe = _buckets[currentIndex];
 
-			if (probe.Value.Key.CompareTo(key) == 0)
-			{
-				if (probe.Value.Value.Item1 is false)
+				if (probe.HasValue is false)
 				{
-					return currentIndex;
+					break;
 				}
-				break;
-			}
 
-			currentIndex = (currentIndex + 1) & (_buckets.Length - 1);
-			attemptCount++;
-		} while (attemptCount < limit);
+				if (probe.Value.Key.CompareTo(key) == 0)
+				{
+					if (probe.Value.Value.Item1 is false)
+					{
+						return currentIndex;
+					}
+					break;
+				}
 
+				currentIndex = (currentIndex + 1) & (_buckets.Length - 1);
+				attemptCount++;
+			} while (attemptCount < limit);
+		}
 		return -1;
 	}
 }

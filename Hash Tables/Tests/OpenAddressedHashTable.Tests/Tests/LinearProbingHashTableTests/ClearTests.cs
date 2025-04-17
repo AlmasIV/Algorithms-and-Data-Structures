@@ -7,8 +7,7 @@ namespace OpenAddressedHashTable.LinearProbingHashTable.Tests;
 public class ClearTests
 {
 	[TestMethod]
-	[ExpectedException(typeof(InvalidOperationException))]
-	public void Clear_CallOnEmptyHashTable_ThrowsInvalidOperationException()
+	public void Clear_CallOnEmptyHashTable_DoesNothing()
 	{
 		LinearProbingHashTable<int, string> myHashTable = new();
 
