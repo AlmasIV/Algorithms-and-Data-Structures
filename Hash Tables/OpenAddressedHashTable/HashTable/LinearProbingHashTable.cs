@@ -84,6 +84,9 @@ public class LinearProbingHashTable<K, V> : HashTableAbstract<K, V> where K : IC
 				Count--;
 			}
 		}
+		if(_loadFactor <= 0.25) {
+			_Resize(_buckets.Length >> 1);
+		}
 		return isRemoved;
 	}
 
